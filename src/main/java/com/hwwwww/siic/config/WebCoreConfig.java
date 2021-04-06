@@ -41,9 +41,11 @@ public class WebCoreConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> excludePath = new ArrayList<>();
-        //排除拦截，除了注册登录(此时还没token)，其他都拦截
+        //排除拦截
         excludePath.add("/register");
         excludePath.add("/login");
+        excludePath.add("/favicon.ico");
+        excludePath.add("/error");
         excludePath.add("/static/**");
         excludePath.add("/assets/**");
         registry.addInterceptor(tokenInterceptor).excludePathPatterns(excludePath).addPathPatterns("/**");
