@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.NurseLevelMapper">
+  <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.NurseLevel">
+    <!--@mbg.generated-->
+    <!--@Table nurse_level-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_deleted" jdbcType="INTEGER" property="idDeleted" />
+    <result column="level_name" jdbcType="VARCHAR" property="levelName" />
+    <result column="level_status" jdbcType="INTEGER" property="levelStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, id_deleted, level_name, level_status
+  </sql>
+</mapper>

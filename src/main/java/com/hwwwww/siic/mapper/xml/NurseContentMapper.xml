@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.NurseContentMapper">
+  <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.NurseContent">
+    <!--@mbg.generated-->
+    <!--@Table nurse_content-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="is_add" jdbcType="INTEGER" property="isAdd" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="id_deleted" jdbcType="INTEGER" property="idDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, price, `desc`, is_add, `status`, id_deleted
+  </sql>
+</mapper>

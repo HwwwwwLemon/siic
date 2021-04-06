@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.OutgoingMapper">
+  <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.Outgoing">
+    <!--@mbg.generated-->
+    <!--@Table outgoing-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="outgoing_reason" jdbcType="VARCHAR" property="outgoingReason" />
+    <result column="outgoing_time" jdbcType="TIMESTAMP" property="outgoingTime" />
+    <result column="expected_return_time" jdbcType="TIMESTAMP" property="expectedReturnTime" />
+    <result column="actual_return_time" jdbcType="TIMESTAMP" property="actualReturnTime" />
+    <result column="escorted" jdbcType="VARCHAR" property="escorted" />
+    <result column="relation" jdbcType="VARCHAR" property="relation" />
+    <result column="escorted_tel" jdbcType="VARCHAR" property="escortedTel" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+    <result column="audit_person" jdbcType="VARCHAR" property="auditPerson" />
+    <result column="audit_tine" jdbcType="TIMESTAMP" property="auditTine" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_deleted, customerid, outgoing_reason, outgoing_time, expected_return_time, 
+    actual_return_time, escorted, relation, escorted_tel, audit_status, audit_person, 
+    audit_tine
+  </sql>
+</mapper>

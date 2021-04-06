@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.RetreatMapper">
+  <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.Retreat">
+    <!--@mbg.generated-->
+    <!--@Table retreat-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="retreat_time" jdbcType="TIMESTAMP" property="retreatTime" />
+    <result column="retreat_type" jdbcType="VARCHAR" property="retreatType" />
+    <result column="retreat_reason" jdbcType="VARCHAR" property="retreatReason" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+    <result column="audit_person" jdbcType="VARCHAR" property="auditPerson" />
+    <result column="audit_tine" jdbcType="TIMESTAMP" property="auditTine" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_deleted, customerid, retreat_time, retreat_type, retreat_reason, `status`, 
+    audit_status, audit_person, audit_tine
+  </sql>
+</mapper>

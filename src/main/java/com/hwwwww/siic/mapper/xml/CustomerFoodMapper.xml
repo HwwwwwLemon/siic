@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.CustomerFoodMapper">
+  <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.CustomerFood">
+    <!--@mbg.generated-->
+    <!--@Table customer_food-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="customerid" jdbcType="INTEGER" property="customerid" />
+    <result column="foodid" jdbcType="INTEGER" property="foodid" />
+    <result column="fooddate" jdbcType="DATE" property="fooddate" />
+    <result column="foodweek" jdbcType="INTEGER" property="foodweek" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_deleted, customerid, foodid, fooddate, foodweek
+  </sql>
+</mapper>
