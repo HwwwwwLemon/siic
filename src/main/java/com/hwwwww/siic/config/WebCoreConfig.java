@@ -28,9 +28,9 @@ public class WebCoreConfig implements WebMvcConfigurer {
     private TokenInterceptor tokenInterceptor;
 
     //构造方法
-    public WebCoreConfig(TokenInterceptor tokenInterceptor) {
-        this.tokenInterceptor = tokenInterceptor;
-    }
+//    public WebCoreConfig(TokenInterceptor tokenInterceptor) {
+//        this.tokenInterceptor = tokenInterceptor;
+//    }
 
     @Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
@@ -38,6 +38,7 @@ public class WebCoreConfig implements WebMvcConfigurer {
         configurer.setDefaultTimeout(30000);
     }
 
+/*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> excludePath = new ArrayList<>();
@@ -51,6 +52,7 @@ public class WebCoreConfig implements WebMvcConfigurer {
         registry.addInterceptor(tokenInterceptor).excludePathPatterns(excludePath).addPathPatterns("/**");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
+*/
 
 
     @Override

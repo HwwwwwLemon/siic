@@ -1,11 +1,12 @@
 package com.hwwwww.siic.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @TableName(value = "customer")
@@ -13,6 +14,7 @@ public class Customer {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableLogic
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
@@ -23,7 +25,7 @@ public class Customer {
     private Integer customerAge;
 
     @TableField(value = "customer_sex")
-    private Integer customerSex;
+    private String customerSex;
 
     @TableField(value = "idcard")
     private String idcard;
@@ -35,7 +37,7 @@ public class Customer {
     private Integer buildingId;
 
     @TableField(value = "record_id")
-    private Integer recordId;
+    private String recordId;
 
     /**
      * 活力老人
@@ -43,9 +45,13 @@ public class Customer {
     @TableField(value = "elder_type")
     private String elderType;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "checkin_date")
     private Date checkinDate;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "expiration_date")
     private Date expirationDate;
 
@@ -64,6 +70,8 @@ public class Customer {
     @TableField(value = "attention")
     private String attention;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "birthday")
     private Date birthday;
 
