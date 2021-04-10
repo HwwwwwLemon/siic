@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+    * 护理级别
+    */
 @Data
 @TableName(value = "nurse_level")
 public class NurseLevel {

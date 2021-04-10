@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+    * 膳食信息
+    */
 @Data
 @TableName(value = "food")
 public class Food {
@@ -15,29 +18,35 @@ public class Food {
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
+    /**
+     * 膳食名称
+     */
     @TableField(value = "foodname")
     private String foodname;
 
     /**
-     * 类别
+     * 膳食类别
      */
     @TableField(value = "foodtype")
-    private Integer foodtype;
+    private String foodtype;
 
     /**
-     * 食品标签
+     * 膳食标签
      */
     @TableField(value = "foodlabel")
-    private Integer foodlabel;
+    private String foodlabel;
 
+    /**
+     * 膳食价格
+     */
     @TableField(value = "foodprice")
     private Double foodprice;
 
     /**
-     * 是否清真 1-是 0-否
+     * 是否清真: 是 否
      */
     @TableField(value = "is_muslim")
-    private Integer isMuslim;
+    private String isMuslim;
 
     /**
      * 供应星期

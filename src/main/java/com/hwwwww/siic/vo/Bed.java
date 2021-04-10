@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+    * 床位信息
+    */
 @Data
 @TableName(value = "bed")
 public class Bed {
@@ -15,18 +18,33 @@ public class Bed {
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
+    /**
+     * 房间号
+     */
     @TableField(value = "room_number")
     private String roomNumber;
 
+    /**
+     * 床位状态： 空闲 外出 有人 
+     */
     @TableField(value = "bed_status")
     private String bedStatus;
 
+    /**
+     * 床位位置（未使用）
+     */
     @TableField(value = "position_type")
     private String positionType;
 
-    @TableField(value = "name")
+    /**
+     * 床位名称
+     */
+    @TableField(value = "`name`")
     private String name;
 
+    /**
+     * 排序（未使用）
+     */
     @TableField(value = "sort")
     private Integer sort;
 

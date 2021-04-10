@@ -26,8 +26,8 @@ public class DruidConfig {
     @Value("${spring.datasource.loginPassword}")
     private String loginPassword;
 
-    private final String ALLOW = "";
-    private final String REFUSE = "127.0.0.2";
+    private static final String ALLOW = "";
+    private static final String REFUSE = "127.0.0.2";
 
     @ConfigurationProperties(prefix = "spring.datasource")
     @Bean

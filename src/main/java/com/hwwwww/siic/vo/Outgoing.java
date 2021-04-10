@@ -4,9 +4,15 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
+
+/**
+    * 外出登记
+    */
 @Data
 @TableName(value = "outgoing")
 public class Outgoing {
@@ -16,36 +22,75 @@ public class Outgoing {
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
+    /**
+     * 客户ID
+     */
     @TableField(value = "customerid")
     private Integer customerid;
 
+    /**
+     * 外出原因
+     */
     @TableField(value = "outgoing_reason")
     private String outgoingReason;
 
+    /**
+     * 外出时间
+     */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "outgoing_time")
     private Date outgoingTime;
 
+    /**
+     * 预计回来时间
+     */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "expected_return_time")
     private Date expectedReturnTime;
 
+    /**
+     * 实际回来时间
+     */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "actual_return_time")
     private Date actualReturnTime;
 
+    /**
+     * 陪同人
+     */
     @TableField(value = "escorted")
     private String escorted;
 
+    /**
+     * 与老人关系
+     */
     @TableField(value = "relation")
     private String relation;
 
+    /**
+     * 陪同人电话
+     */
     @TableField(value = "escorted_tel")
     private String escortedTel;
 
+    /**
+     * 审批状态
+     */
     @TableField(value = "audit_status")
     private String auditStatus;
 
+    /**
+     * 审批人
+     */
     @TableField(value = "audit_person")
     private String auditPerson;
 
+    /**
+     * 审批时间
+     */
     @TableField(value = "audit_tine")
     private Date auditTine;
 

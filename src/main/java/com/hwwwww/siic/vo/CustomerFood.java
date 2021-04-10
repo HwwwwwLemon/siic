@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 import lombok.Data;
 
+/**
+    * 客户膳食信息
+    */
 @Data
 @TableName(value = "customer_food")
 public class CustomerFood {
@@ -16,9 +19,15 @@ public class CustomerFood {
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
+    /**
+     * 客户ID
+     */
     @TableField(value = "customerid")
     private Integer customerid;
 
+    /**
+     * 膳食ID
+     */
     @TableField(value = "foodid")
     private Integer foodid;
 

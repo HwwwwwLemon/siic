@@ -4,60 +4,63 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
 import lombok.Data;
 
+/**
+    * 系统用户信息
+    */
 @Data
 @TableName(value = "`user`")
 public class User {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField(value = "create_time")
-    private Date createTime;
-
-    @TableField(value = "create_by")
-    private Integer createBy;
-
-    @TableField(value = "update_time")
-    private Date updateTime;
-
-    @TableField(value = "update_by")
-    private Integer updateBy;
-
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
+    /**
+     * 昵称
+     */
     @TableField(value = "nickname")
     private String nickname;
 
+    /**
+     * 用户姓名
+     */
     @TableField(value = "username")
     private String username;
 
-    @TableField(value = "password")
+    /**
+     * 用户密码
+     */
+    @TableField(value = "`password`")
     private String password;
 
+    /**
+     * 性别
+     */
     @TableField(value = "sex")
     private Integer sex;
 
+    /**
+     * 邮箱地址
+     */
     @TableField(value = "email")
     private String email;
 
+    /**
+     * 电话号码
+     */
     @TableField(value = "phone_number")
     private String phoneNumber;
 
+    /**
+     * 员工编号
+     */
     @TableField(value = "user_code")
     private String userCode;
 
     public static final String COL_ID = "id";
-
-    public static final String COL_CREATE_TIME = "create_time";
-
-    public static final String COL_CREATE_BY = "create_by";
-
-    public static final String COL_UPDATE_TIME = "update_time";
-
-    public static final String COL_UPDATE_BY = "update_by";
 
     public static final String COL_IS_DELETED = "is_deleted";
 

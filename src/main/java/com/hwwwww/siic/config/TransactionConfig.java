@@ -78,6 +78,7 @@ public class TransactionConfig {
         source.addTransactionalMethod("append*", txAttr_REQUIRED);
         source.addTransactionalMethod("modify*", txAttr_REQUIRED);
         source.addTransactionalMethod("mod*", txAttr_REQUIRED);
+        source.addTransactionalMethod("change*", txAttr_REQUIRED);
         source.addTransactionalMethod("edit*", txAttr_REQUIRED);
         source.addTransactionalMethod("insert*", txAttr_REQUIRED);
         source.addTransactionalMethod("delete*", txAttr_REQUIRED);

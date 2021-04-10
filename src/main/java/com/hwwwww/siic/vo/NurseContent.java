@@ -6,19 +6,31 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+    * 护理内容
+    */
 @Data
 @TableName(value = "nurse_content")
 public class NurseContent {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField(value = "name")
+    /**
+     * 护理内容名称
+     */
+    @TableField(value = "`name`")
     private String name;
 
+    /**
+     * 护理内容价格
+     */
     @TableField(value = "price")
     private Double price;
 
-    @TableField(value = "desc")
+    /**
+     * 护理内容描述
+     */
+    @TableField(value = "`desc`")
     private String desc;
 
     /**
@@ -30,7 +42,7 @@ public class NurseContent {
     /**
      * 1-启用 0-不启用
      */
-    @TableField(value = "status")
+    @TableField(value = "`status`")
     private Integer status;
 
     /**
