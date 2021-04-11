@@ -1,7 +1,10 @@
 package com.hwwwww.siic.config;
 
 
+import com.hwwwww.siic.config.converter.DateToStringConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -27,6 +30,10 @@ public class WebCoreConfig implements WebMvcConfigurer {
 //        this.tokenInterceptor = tokenInterceptor;
 //    }
 
+    @Autowired
+    private DateToStringConverter dateToStringConverter;
+
+
     @Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
         configurer.setTaskExecutor(new ConcurrentTaskExecutor(Executors.newFixedThreadPool(3)));
@@ -49,6 +56,10 @@ public class WebCoreConfig implements WebMvcConfigurer {
     }
 */
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(dateToStringConverter);
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

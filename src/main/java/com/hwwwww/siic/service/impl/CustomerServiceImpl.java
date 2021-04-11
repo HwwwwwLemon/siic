@@ -39,7 +39,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         //分页
         PageHelper.startPage(currentPage, pageSize);
         List<Map<String, Object>> customers = baseMapper.selectCustomerbyName(new QueryWrapper<Map<String, Object>>().likeRight("customer_name", name));
-
+        System.out.println(customers);
         //获取查询到的总数
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(customers);
         result.put("totalCount", pageInfo.getTotal());

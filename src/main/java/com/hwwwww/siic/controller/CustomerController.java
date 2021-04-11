@@ -25,9 +25,11 @@ public class CustomerController {
     private CustomerService service;
 
     @RespBodyResMapping("/query")
-    public String getAllCustomers(@RequestParam Map<String, Object> params) throws JsonProcessingException {
+    public Map<String, Object> getAllCustomers(@RequestParam Map<String, Object> params) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(service.selectCustomerWithPage(params));
+        Map<String, Object> result = service.selectCustomerWithPage(params);
+
+        return result;
 
     }
 
@@ -51,6 +53,7 @@ public class CustomerController {
         Map<String, Object> map = new HashMap<>(1);
         map.put("customer", service.getById(id));
         ObjectMapper objectMapper = new ObjectMapper();
+
         return objectMapper.writeValueAsString(map);
 
     }
