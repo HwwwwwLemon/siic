@@ -31,6 +31,14 @@
     <resultMap id="CustomerMap" extends="BaseResultMap" type="map">
         <result column="bed_id_name" jdbcType="VARCHAR" property="bedIdName"/>
     </resultMap>
+
+    <resultMap id="BedTransfer" type="map">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="room_number" jdbcType="VARCHAR" property="roomNumber"/>
+        <result column="building_id" jdbcType="INTEGER" property="buildingId"/>
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName"/>
+        <result column="bed_id" jdbcType="INTEGER" property="bedId"/>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id, is_deleted, customer_name, customer_age, customer_sex, idcard, room_number, building_id,

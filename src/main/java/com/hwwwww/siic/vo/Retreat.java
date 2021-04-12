@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
     */
 @Data
 @TableName(value = "retreat")
-public class Retreat {
+public class Retreat implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 

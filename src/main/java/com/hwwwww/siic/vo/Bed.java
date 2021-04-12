@@ -1,23 +1,25 @@
 package com.hwwwww.siic.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
-    * 床位信息
-    */
+ * 床位信息
+ */
 @Data
 @TableName(value = "bed")
-public class Bed {
+public class Bed implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableLogic
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
+    @TableField(value = "building_id")
+    public Integer buildingId;
     /**
      * 房间号
      */
@@ -25,7 +27,7 @@ public class Bed {
     private String roomNumber;
 
     /**
-     * 床位状态： 空闲 外出 有人 
+     * 床位状态： 空闲 外出 有人
      */
     @TableField(value = "bed_status")
     private String bedStatus;

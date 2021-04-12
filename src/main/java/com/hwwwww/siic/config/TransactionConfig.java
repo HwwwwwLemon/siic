@@ -23,11 +23,11 @@ public class TransactionConfig {
     /**
      * 切面地址
      */
-    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.hwwwww.siic.service.*.*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.hwwwww.siic.*.*.*(..))";
     /**
      * 事务失效时间
      */
-    private static final int TX_METHOD_TIMEOUT = 10;
+    private static final int TX_METHOD_TIMEOUT = -1;
 
     @Autowired
     private PlatformTransactionManager transactionManager;
@@ -50,6 +50,7 @@ public class TransactionConfig {
         /*
          * 设置事务失效时间，如果超过5秒，则回滚事务
          */
+        txAttr_REQUIRED.rollbackOn(new Exception());
         txAttr_REQUIRED.setTimeout(TX_METHOD_TIMEOUT);
 
         DefaultTransactionAttribute txAttr_REQUIRED_READONLY = new DefaultTransactionAttribute();

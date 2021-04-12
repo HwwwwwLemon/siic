@@ -3,6 +3,8 @@ package com.hwwwww.siic.vo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author Hwwwww
  * @version JDK 15
@@ -10,7 +12,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class Selector {
+public class Selector implements Serializable {
     private Object label;
     private Object value;
 }

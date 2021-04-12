@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +34,11 @@ public class CustomerController {
 
     }
 
+    @RespBodyResMapping("/get-bed-info")
+    public List<Map<String, Object>> getBedInfo() {
+        return service.selectCustomerBedInfo();
+    }
+
     @RespBodyResMapping("/add")
     public boolean addCustomer(Customer customer) {
         return service.insert(customer);
@@ -47,6 +53,10 @@ public class CustomerController {
     public boolean deleteCustomer(Integer id) {
         return service.delete(id);
     }
+    @RespBodyResMapping("transfer-bed")
+    public boolean transferBed(@RequestParam  Map<String, Object> params){
+        return service.updateTransferBed(params);
+    }
 
     @RespBodyResMapping("/get-by-id")
     public String getCustomerById(Integer id) throws JsonProcessingException {
@@ -55,10 +65,10 @@ public class CustomerController {
         ObjectMapper objectMapper = new ObjectMapper();
 
         return objectMapper.writeValueAsString(map);
-
     }
+
     @RespBodyResMapping("/get-record-id")
-    public String getRecordId(){
+    public String getRecordId() {
         return service.createRecordId();
     }
 }

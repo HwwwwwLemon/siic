@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
     * 护理内容
     */
 @Data
 @TableName(value = "nurse_content")
-public class NurseContent {
+public class NurseContent implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 

@@ -1,10 +1,11 @@
 package com.hwwwww.siic.service;
 
-import com.hwwwww.siic.vo.Bed;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hwwwww.siic.vo.Bed;
 import com.hwwwww.siic.vo.Selector;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BedService extends IService<Bed> {
 
@@ -14,6 +15,9 @@ public interface BedService extends IService<Bed> {
      * @return 选项list
      */
     List<Selector> selectRoomNumber();
+
+
+    Map<String, Object> selectBedInfoWithBuildingNumberRoomNumber(Map<String, Object> params);
 
     /**
      * 通过房间号获取当前房间床位信息
@@ -50,4 +54,10 @@ public interface BedService extends IService<Bed> {
      * @return 是否成功
      */
     boolean changeBedStatus(Integer id, Integer key);
+
+    boolean insert(Bed entity);
+
+    boolean update(Bed entity);
+
+    boolean delete(Integer id);
 }
