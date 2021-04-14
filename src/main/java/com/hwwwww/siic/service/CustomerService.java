@@ -3,6 +3,7 @@ package com.hwwwww.siic.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hwwwww.siic.vo.Customer;
+import com.hwwwww.siic.vo.Selector;
 
 import java.util.List;
 import java.util.Map;
@@ -22,4 +23,5 @@ public interface CustomerService extends IService<Customer> {
     boolean updateTransferBed(Map<String, Object> params);
 
     String createRecordId();
+    List<Selector> selectCustomerSelector();
 }

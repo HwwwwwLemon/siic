@@ -14,4 +14,15 @@ public class GeneralUtil {
         sb.append(str);
         return sb.toString();
     }
+
+    public static String getExtensionName(String fileName) {
+        if (fileName == null || fileName.length() == 0) {
+            return "";
+        }
+        if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0) {
+            return "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+        } else {
+            return "";
+        }
+    }
 }

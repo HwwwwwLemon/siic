@@ -10,15 +10,13 @@ import com.hwwwww.siic.service.BedService;
 import com.hwwwww.siic.service.CustomerService;
 import com.hwwwww.siic.utils.GeneralUtil;
 import com.hwwwww.siic.vo.Customer;
+import com.hwwwww.siic.vo.Selector;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Hwwwww
@@ -39,8 +37,10 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         //按照名字搜索
         String name = (String) params.get("name");
         //分页
+        QueryWrapper<Map<String, Object>> queryWrapper = new QueryWrapper<>();
+        queryWrapper.likeRight("customer_name", name);
         PageHelper.startPage(currentPage, pageSize);
-        List<Map<String, Object>> customers = baseMapper.selectCustomerbyName(new QueryWrapper<Map<String, Object>>().likeRight("customer_name", name));
+        List<Map<String, Object>> customers = baseMapper.selectCustomerbyName(queryWrapper);
         //获取查询到的总数
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(customers);
         result.put("totalCount", pageInfo.getTotal());
@@ -51,6 +51,16 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     @Override
     public List<Map<String, Object>> selectCustomerBedInfo() {
         return baseMapper.selectCustomerBedInfo();
+    }
+
+    @Override
+    public List<Selector> selectCustomerSelector() {
+        List<Customer> customers = baseMapper.selectCustomerSelector();
+        List<Selector> selector = new ArrayList<>();
+        for (Customer entry : customers) {
+            selector.add(new Selector(entry.getCustomerName(), entry.getId()));
+        }
+        return selector;
     }
 
     @Override

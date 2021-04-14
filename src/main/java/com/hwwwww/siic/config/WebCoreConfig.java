@@ -40,6 +40,11 @@ public class WebCoreConfig implements WebMvcConfigurer {
         configurer.setDefaultTimeout(30000);
     }
 
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+//    }
+
 /*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

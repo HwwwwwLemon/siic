@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.CustomerService;
 import com.hwwwww.siic.vo.Customer;
+import com.hwwwww.siic.vo.Selector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,10 +29,13 @@ public class CustomerController {
     @RespBodyResMapping("/query")
     public Map<String, Object> getAllCustomers(@RequestParam Map<String, Object> params) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> result = service.selectCustomerWithPage(params);
+        return service.selectCustomerWithPage(params);
 
-        return result;
+    }
 
+    @RespBodyResMapping("/get-customer-selector")
+    public List<Selector> getCustomerSelector() {
+        return service.selectCustomerSelector();
     }
 
     @RespBodyResMapping("/get-bed-info")
@@ -53,8 +57,9 @@ public class CustomerController {
     public boolean deleteCustomer(Integer id) {
         return service.delete(id);
     }
+
     @RespBodyResMapping("transfer-bed")
-    public boolean transferBed(@RequestParam  Map<String, Object> params){
+    public boolean transferBed(@RequestParam Map<String, Object> params) {
         return service.updateTransferBed(params);
     }
 

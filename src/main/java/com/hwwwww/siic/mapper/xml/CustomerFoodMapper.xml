@@ -10,9 +10,12 @@
     <result column="foodid" jdbcType="INTEGER" property="foodid" />
     <result column="fooddate" jdbcType="DATE" property="fooddate" />
     <result column="foodweek" jdbcType="INTEGER" property="foodweek" />
+    <result column="likes" jdbcType="VARCHAR" property="likes" />
+    <result column="attention" jdbcType="VARCHAR" property="attention" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, is_deleted, customerid, foodid, fooddate, foodweek
+    id, is_deleted, customerid, foodid, fooddate, foodweek,likes,attention,remarks
   </sql>
 </mapper>

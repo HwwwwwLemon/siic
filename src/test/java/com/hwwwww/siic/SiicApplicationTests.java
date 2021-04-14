@@ -19,7 +19,7 @@ class SiicApplicationTests {
     private FoodService foodService;
     @Test
     void contextLoads() {
-        System.out.println(foodService.selectFoodByDay(1));
+        System.out.println(foodService.selectFoodByDay(1,1));
     }
 
 }
