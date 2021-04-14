@@ -13,6 +13,6 @@ import java.util.Map;
 
 @Mapper
 public interface CustomerFoodMapper extends BaseMapper<CustomerFood> {
-    @Select("select c.customer_name,c.customer_age,c.customer_sex,cf.*,f.supply_type from customer c,customer_food cf,food f ${ew.customSqlSegment} AND c.id = cf.customerid AND cf.foodid = f.id")
+    @Select("select c.customer_name,c.customer_age,c.customer_sex,cf.*,f.supply_type from customer c,customer_food cf,food f ${ew.customSqlSegment} AND c.id = cf.customerid AND cf.foodid = f.id AND cf.is_deleted=1")
     List<Map<String, Object>> selectCustomerFoodbyNameId(@Param(Constants.WRAPPER) Wrapper<Map<String, Object>> wrapper);
 }
