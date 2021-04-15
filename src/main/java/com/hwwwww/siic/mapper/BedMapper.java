@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface BedMapper extends BaseMapper<Bed> {
 
-    @Select("select room_number from siic.bed group by room_number")
+    @Select("select room_number from siic.bed group by room_number Where  is_deleted=1")
     List<Integer> selectRoomNumber();
 }

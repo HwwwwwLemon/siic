@@ -31,7 +31,7 @@ public class CustomerFood implements Serializable {
      * 膳食ID
      */
     @TableField(value = "foodid")
-    private Integer foodid;
+    private String  foodid;
 
     /**
      * 膳食日期

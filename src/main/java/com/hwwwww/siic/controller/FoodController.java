@@ -8,6 +8,7 @@ import com.hwwwww.siic.vo.Food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,6 +60,12 @@ public class FoodController {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(map);
     }
+    @RespBodyResMapping("get-by-id-list")
+    public String getFoodByIdList(@RequestBody List<Integer> idList) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(service.getFoodByIdList(idList));
+    }
+
 
 
     @RespBodyResMapping(value = "/uploads")

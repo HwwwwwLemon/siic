@@ -39,6 +39,12 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
     }
 
     @Override
+    public List<Food> getFoodByIdList(List<Integer> idList) {
+        QueryWrapper<Food> wrapper = new QueryWrapper<>();
+        return this.list(wrapper.in("id", idList));
+    }
+
+    @Override
     public boolean insert(Food entity) {
         return this.save(entity);
     }

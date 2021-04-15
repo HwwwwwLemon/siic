@@ -15,14 +15,14 @@ import java.util.Map;
 @Mapper
 @CacheNamespace(flushInterval = 30000)
 public interface CustomerMapper extends BaseMapper<Customer> {
-    @Select("select c.*,b.name bed_id_name from customer c,bed b ${ew.customSqlSegment} AND c.bed_id = b.id")
+    @Select("select c.*,b.name bed_id_name from customer c,bed b ${ew.customSqlSegment} AND c.bed_id = b.id AND c.is_deleted=1")
     @ResultMap("CustomerMap")
     List<Map<String, Object>> selectCustomerbyName(@Param(Constants.WRAPPER) Wrapper<Map<String, Object>> userWrapper);
 
-    @Select("select id,customer_name, bed_id, building_id, room_number from customer")
+    @Select("select id,customer_name, bed_id, building_id, room_number from customer Where  is_deleted=1")
     @ResultMap("BedTransfer")
     List<Map<String, Object>> selectCustomerBedInfo();
 
-    @Select("select id,customer_name from customer")
+    @Select("select id,customer_name from customer Where  is_deleted=1")
     List<Customer> selectCustomerSelector();
 }

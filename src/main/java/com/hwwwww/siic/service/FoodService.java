@@ -24,8 +24,10 @@ public interface FoodService extends IService<Food> {
 
     boolean delete(Integer id);
 
+    List<Food> getFoodByIdList(List<Integer> idList);
 
     List<Selector> getFoodBySupplyDate(Integer date);
 
     List<Selector> getFoodBySupplyType(Integer type);
+
 }
