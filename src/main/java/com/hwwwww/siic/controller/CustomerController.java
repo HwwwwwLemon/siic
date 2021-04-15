@@ -28,7 +28,6 @@ public class CustomerController {
 
     @RespBodyResMapping("/query")
     public Map<String, Object> getAllCustomers(@RequestParam Map<String, Object> params) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
         return service.selectCustomerWithPage(params);
 
     }

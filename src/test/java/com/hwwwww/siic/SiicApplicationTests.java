@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootTest
 @Slf4j
 class SiicApplicationTests {
@@ -17,9 +20,13 @@ class SiicApplicationTests {
     private CustomerService customerService;
     @Autowired
     private FoodService foodService;
+
     @Test
     void contextLoads() {
-        System.out.println(foodService.selectFoodByDay(1,1));
+        Map<String, Object> map = new HashMap<>();
+        map.put("date", "");
+        map.put("type", "");
+        System.out.println(foodService.selectFoodQuantity(map));
     }
 
 }

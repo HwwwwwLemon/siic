@@ -1,22 +1,20 @@
 package com.hwwwww.siic.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
-    * 护理级别
-    */
+ * 护理级别
+ */
 @Data
 @TableName(value = "nurse_level")
 public class NurseLevel implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableLogic
     @TableField(value = "id_deleted")
     private Integer idDeleted;
 
@@ -26,11 +24,15 @@ public class NurseLevel implements Serializable {
     @TableField(value = "level_name")
     private String levelName;
 
+
     /**
      * 1:启用  2 停用
      */
     @TableField(value = "level_status")
     private Integer levelStatus;
+
+    @TableField(value = "remarks")
+    private String remarks;
 
     public static final String COL_ID = "id";
 
@@ -39,4 +41,8 @@ public class NurseLevel implements Serializable {
     public static final String COL_LEVEL_NAME = "level_name";
 
     public static final String COL_LEVEL_STATUS = "level_status";
+
+    public static final String COL_REMARKS = "remarks";
+
+
 }

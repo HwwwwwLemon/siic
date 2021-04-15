@@ -27,7 +27,7 @@ public class CustomerFoodController {
 
     @RespBodyResMapping("/query")
     public Map<String, Object> getAllCustomerFoods(@RequestParam Map<String, Object> params) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+
         return service.selectCustomerFoodWithPage(params);
 
     }

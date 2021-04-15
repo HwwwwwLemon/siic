@@ -8,9 +8,10 @@
     <result column="id_deleted" jdbcType="INTEGER" property="idDeleted" />
     <result column="level_name" jdbcType="VARCHAR" property="levelName" />
     <result column="level_status" jdbcType="INTEGER" property="levelStatus" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, id_deleted, level_name, level_status
+    id, id_deleted, level_name, level_status,remarks
   </sql>
 </mapper>

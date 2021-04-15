@@ -16,13 +16,16 @@ public interface FoodService extends IService<Food> {
      * @param day 星期几
      * @return 按照早中晚分类好
      */
-    Map<String, List<Food>> selectFoodByDay(Integer day,Integer key);
+    Map<String, List<Food>> selectFoodByDay(Integer day, Integer key);
+
+   Map<String, Object> selectFoodQuantity(Map<String, Object> params);
 
     boolean insert(Food entity);
 
     boolean update(Food entity);
 
     boolean delete(Integer id);
+
 
     List<Food> getFoodByIdList(List<Integer> idList);
 

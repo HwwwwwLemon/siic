@@ -8,10 +8,7 @@ import com.hwwwww.siic.vo.Food;
 import com.hwwwww.siic.vo.Selector;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements FoodService {
@@ -36,6 +33,44 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
             map.put("dinner", dinner);
         }
         return map;
+    }
+
+    @Override
+    public Map<String, Object> selectFoodQuantity(Map<String, Object> params) {
+        String date = (String) params.get("date");
+        String type = (String) params.get("type");
+        //分页
+        QueryWrapper<Map<String, Object>> queryWrapper1 = new QueryWrapper<>();
+        queryWrapper1.likeRight("cf.fooddate", date);
+        queryWrapper1.likeRight("f.supply_type", type);
+        QueryWrapper<String> queryWrapper2 = new QueryWrapper<>();
+        queryWrapper2.likeRight("cf.fooddate", date);
+        queryWrapper2.likeRight("f.supply_type", type);
+
+        Map<String, Object> result = new HashMap<>();
+        //标签
+        List<String> tags = baseMapper.selectFoodType(queryWrapper2);
+        //当日膳食数量
+        List<Map<String, Object>> foods = new LinkedList<>(baseMapper.selectFoodQuantity(queryWrapper1));
+
+        //循环按照foodtype分类
+        for (String tagName : tags) {
+            //临时List
+            List<Map<String, Object>> tempList = new LinkedList<>();
+            int count = 0;
+            for (Iterator<Map<String, Object>> iter = foods.iterator(); iter.hasNext(); ) {
+                Map<String, Object> tempMap = iter.next();
+                if (tempMap.get("foodtype").equals(tagName)) {
+                    tempList.add(tempMap);
+                    iter.remove();
+                }
+                count++;
+            }
+            System.out.println(count);
+            result.put(tagName, tempList);
+        }
+        result.put("tags", tags);
+        return result;
     }
 
     @Override

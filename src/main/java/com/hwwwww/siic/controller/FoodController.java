@@ -34,8 +34,8 @@ public class FoodController {
     private Environment environment;
 
     @RespBodyResMapping("/get-with-date")
-    public Map<String, List<Food>> getBySupplyDate(Integer supplyDate,Integer key) {
-        return service.selectFoodByDay(supplyDate,key);
+    public Map<String, List<Food>> getBySupplyDate(Integer supplyDate, Integer key) {
+        return service.selectFoodByDay(supplyDate, key);
     }
 
     @RespBodyResMapping("/add")
@@ -60,12 +60,17 @@ public class FoodController {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(map);
     }
+
     @RespBodyResMapping("get-by-id-list")
     public String getFoodByIdList(@RequestBody List<Integer> idList) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(service.getFoodByIdList(idList));
     }
 
+    @RespBodyResMapping("get-quantity")
+    public Map<String, Object> getFoodQuantity(@RequestParam Map<String, Object> params) throws JsonProcessingException {
+        return service.selectFoodQuantity(params);
+    }
 
 
     @RespBodyResMapping(value = "/uploads")

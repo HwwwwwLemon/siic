@@ -1,8 +1,11 @@
 package com.hwwwww.siic.service;
 
-import com.hwwwww.siic.vo.NurseLevel;
 import com.baomidou.mybatisplus.extension.service.IService;
-public interface NurseLevelService extends IService<NurseLevel>{
+import com.hwwwww.siic.vo.NurseLevel;
 
+import java.util.Map;
 
+public interface NurseLevelService extends IService<NurseLevel> {
+
+   Map<String, Object> selectCustomerWithPage(Map<String, Object> params);
 }

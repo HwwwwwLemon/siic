@@ -29,7 +29,7 @@ public class CustomerFoodServiceImpl extends ServiceImpl<CustomerFoodMapper, Cus
         //分页
         QueryWrapper<Map<String, Object>> queryWrapper = new QueryWrapper<>();
         queryWrapper.likeRight("c.customer_name", name);
-        queryWrapper.likeRight("cf.foodweek", date);
+        queryWrapper.likeRight("cf.fooddate", date);
         queryWrapper.likeRight("f.supply_type", type);
         PageHelper.startPage(currentPage, pageSize);
         List<Map<String, Object>> customers = baseMapper.selectCustomerFoodbyNameId(queryWrapper);
