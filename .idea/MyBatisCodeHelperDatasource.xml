@@ -3,8 +3,7 @@
   <component name="MyBatisCodeHelperDatasource">
     <option name="projectProfile">
       <ProjectProfile>
-        <option name="generateService" value="true" />
-        <option name="generateServiceInterface" value="true" />
+        <option name="database" value="MySql" />
         <option name="insertSelectiveMethodEnabled" value="false" />
         <option name="javaMapperPackage" value="com.hwwwww.siic.mapper" />
         <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
@@ -23,10 +22,6 @@
                   <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="javaModelPacakge" value="com.hwwwww.siic.vo" />
                   <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
-                  <option name="javaServiceInterfacePackage" value="com.hwwwww.siic.service" />
-                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/src/main/java" />
-                  <option name="javaServicePackage" value="com.hwwwww.siic.service" />
-                  <option name="javaServicePath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="xmlPackage" value="com.hwwwww.siic.mapper.xml" />
                   <option name="xmlPath" value="$PROJECT_DIR$/src/main/java" />
                 </UserPackageAndPathInfoByModule>
@@ -141,6 +136,8 @@
                   <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="NurseLevelContent" />
                   <option name="moduleName" value="siic" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
                   <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>

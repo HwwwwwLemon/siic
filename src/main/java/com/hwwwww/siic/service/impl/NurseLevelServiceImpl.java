@@ -19,7 +19,7 @@ import java.util.Map;
 @Service
 public class NurseLevelServiceImpl extends ServiceImpl<NurseLevelMapper, NurseLevel> implements NurseLevelService {
     @Override
-    public Map<String, Object> selectCustomerWithPage(Map<String, Object> params) {
+    public Map<String, Object> selectNurseLevelWithPage(Map<String, Object> params) {
         Map<String, Object> result = new HashMap<>(2);
         //当前页码
         int currentPage = Integer.parseInt((String) params.get("currentPage"));
@@ -37,5 +37,20 @@ public class NurseLevelServiceImpl extends ServiceImpl<NurseLevelMapper, NurseLe
         result.put("totalCount", pageInfo.getTotal());
         result.put("list", customers);
         return result;
+    }
+
+    @Override
+    public boolean insert(NurseLevel entity) {
+        return this.save(entity);
+    }
+
+    @Override
+    public boolean update(NurseLevel entity) {
+        return this.updateById(entity);
+    }
+
+    @Override
+    public boolean delete(Integer id) {
+        return this.removeById(id);
     }
 }

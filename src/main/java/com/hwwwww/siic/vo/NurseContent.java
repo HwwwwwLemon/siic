@@ -1,9 +1,6 @@
 package com.hwwwww.siic.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -50,8 +47,9 @@ public class NurseContent implements Serializable {
     /**
      * 1-已删除 0未删除
      */
-    @TableField(value = "id_deleted")
-    private Integer idDeleted;
+    @TableLogic
+    @TableField(value = "is_deleted")
+    private Integer isDeleted;
 
     public static final String COL_ID = "id";
 
@@ -65,5 +63,5 @@ public class NurseContent implements Serializable {
 
     public static final String COL_STATUS = "status";
 
-    public static final String COL_ID_DELETED = "id_deleted";
+    public static final String COL_IS_DELETED = "is_deleted";
 }

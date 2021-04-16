@@ -7,5 +7,11 @@ import java.util.Map;
 
 public interface NurseLevelService extends IService<NurseLevel> {
 
-   Map<String, Object> selectCustomerWithPage(Map<String, Object> params);
+    Map<String, Object> selectNurseLevelWithPage(Map<String, Object> params);
+
+    boolean insert(NurseLevel entity);
+
+    boolean update(NurseLevel entity);
+
+    boolean delete(Integer id);
 }

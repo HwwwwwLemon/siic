@@ -5,12 +5,16 @@
     <!--@mbg.generated-->
     <!--@Table nurse_level_content-->
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="nurse_level_id" jdbcType="INTEGER" property="nurseLevelId" />
     <result column="nurse_content_id" jdbcType="INTEGER" property="nurseContentId" />
-    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="cycle" jdbcType="VARCHAR" property="cycle" />
+    <result column="times" jdbcType="INTEGER" property="times" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, nurse_level_id, nurse_content_id, is_deleted
+    id, is_deleted, nurse_level_id, nurse_content_id, remarks, `cycle`, times, sort
   </sql>
 </mapper>

@@ -10,10 +10,10 @@
     <result column="desc" jdbcType="VARCHAR" property="desc" />
     <result column="is_add" jdbcType="INTEGER" property="isAdd" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="id_deleted" jdbcType="INTEGER" property="idDeleted" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, `name`, price, `desc`, is_add, `status`, id_deleted
+    id, `name`, price, `desc`, is_add, `status`, is_deleted
   </sql>
 </mapper>

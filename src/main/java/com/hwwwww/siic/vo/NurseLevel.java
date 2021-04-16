@@ -15,8 +15,8 @@ public class NurseLevel implements Serializable {
     private Integer id;
 
     @TableLogic
-    @TableField(value = "id_deleted")
-    private Integer idDeleted;
+    @TableField(value = "is_deleted")
+    private Integer isDeleted;
 
     /**
      * 护理级别名称
@@ -36,7 +36,7 @@ public class NurseLevel implements Serializable {
 
     public static final String COL_ID = "id";
 
-    public static final String COL_ID_DELETED = "id_deleted";
+    public static final String COL_IS_DELETED = "is_deleted";
 
     public static final String COL_LEVEL_NAME = "level_name";
 

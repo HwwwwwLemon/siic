@@ -3,13 +3,11 @@ package com.hwwwww.siic.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
@@ -49,7 +47,7 @@ public class RSAUtil {
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         // 初始化密钥对生成器，密钥大小为96-1024位
-        keyPairGen.initialize(2048, new SecureRandom());
+        keyPairGen.initialize(1024, new SecureRandom());
         // 生成一个密钥对，保存在keyPair中
         KeyPair keyPair = keyPairGen.generateKeyPair();
         // 得到私钥
@@ -84,7 +82,7 @@ public class RSAUtil {
         cipher.init(Cipher.ENCRYPT_MODE, priKey);
         byte[] resultBytes = getMaxResultDecryptEncrypt(str, cipher, MAX_ENCRYPT_BLOCK);
         String outStr = Base64.encodeBase64String(resultBytes);
-        //log.info("RSA私钥加密后的数据|outStr:{}", outStr);
+        log.info("RSA私钥加密后的数据|outStr:{}", outStr);
         return outStr;
     }
 
@@ -102,7 +100,7 @@ public class RSAUtil {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, priKey);
         String outStr = new String(getMaxResultDecryptEncrypt(str, cipher, MAX_DECRYPT_BLOCK));
-        //log.info("|RSA私钥解密后的数据|outStr:{}", outStr);
+        log.info("|RSA私钥解密后的数据|outStr:{}", outStr);
         return outStr;
     }
 
@@ -120,7 +118,7 @@ public class RSAUtil {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, pubKey);
         String outStr = Base64.encodeBase64String(getMaxResultDecryptEncrypt(str, cipher, MAX_ENCRYPT_BLOCK));
-        //log.info("|公钥加密后的数据|outStr:{}", outStr);
+        log.info("|公钥加密后的数据|outStr:{}", outStr);
         return outStr;
     }
 
@@ -138,7 +136,7 @@ public class RSAUtil {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, pubKey);
         String outStr = new String(getMaxResultDecryptEncrypt(str, cipher, MAX_DECRYPT_BLOCK));
-        //log.info("|RSA公钥解密后的数据|outStr:{}", outStr);
+        log.info("|RSA公钥解密后的数据|outStr:{}", outStr);
         return outStr;
     }
 

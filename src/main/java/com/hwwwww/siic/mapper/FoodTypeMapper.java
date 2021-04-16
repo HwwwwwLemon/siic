@@ -10,3 +10,4 @@ import com.hwwwww.siic.vo.FoodType;
  */
 public interface FoodTypeMapper extends BaseMapper<FoodType> {
 }
+

@@ -5,13 +5,13 @@
     <!--@mbg.generated-->
     <!--@Table nurse_level-->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="id_deleted" jdbcType="INTEGER" property="idDeleted" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="level_name" jdbcType="VARCHAR" property="levelName" />
     <result column="level_status" jdbcType="INTEGER" property="levelStatus" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, id_deleted, level_name, level_status,remarks
+    id, is_deleted, level_name, level_status,remarks
   </sql>
 </mapper>
