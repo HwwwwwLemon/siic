@@ -1,8 +1,14 @@
 package com.hwwwww.siic.service;
 
-import com.hwwwww.siic.vo.Outgoing;
 import com.baomidou.mybatisplus.extension.service.IService;
-public interface OutgoingService extends IService<Outgoing>{
+import com.hwwwww.siic.vo.OutGoing;
 
+import java.util.Map;
+
+/**
+ * @author Hwwwww
+ */
+public interface OutgoingService extends IService<OutGoing> {
+    Map<String, Object> selectOutGoingWithPage(Map<String, Object> params) throws Exception;
 
 }

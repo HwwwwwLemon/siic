@@ -27,7 +27,7 @@ class SiicApplicationTests {
 //        map.put("date", "");
 //        map.put("type", "");
 //        System.out.println(foodService.selectFoodQuantity(map));
-        System.out.println(rsa.publicKeyDecrypt("LaebmqWapEGLZIDYZkViFdM4AdC04Chbi3AJk3sTkDv51hzS9qswN8krcyWAe0l/gOQjnXNcped2dLD7JJJaoYZtfrAs7htP3gBc8dlmRO9rKFC2xataLzYW14AtRbdbVR4Cu4EImAeryqvU4Fh4Gqu4b8HgTyUZpMMsxKn65QlKBT8yzJDoulgsbTtQzoAxk0DaRs1xrYIgU3JdhqfgZ1YIGzKvmh9jSnAMr/L0O+DcIOoaSIjZVbz5n/eY3F5GTJZpS0LxcxdGP2fPIcs08rky7j2BUAEgNNig76aWVK6duBv2Q0UpIsWW4feMqeAhWLAnoMNRKTa9BWYrnB3J8g=="));
+        System.out.println(rsa.privateKeyDecrypt("MkSekjMEX7+piG+dxTgqSfYISoitcdtZrgp7Eldi+hdQrEERtONkISze8sloqCVkGW81R5YuIISAFEQg5WOTVN8UoDRhZzyAMhgXwpXf9TtKWdwSeQyfxBXc2pT0zWpwom62WZH3SFi4mmiXJQ+eYX/6r0tkONncKStjwfNTAGI= MkSekjMEX7+piG+dxTgqSfYISoitcdtZrgp7Eldi+hdQrEERtONkISze8sloqCVkGW81R5YuIISAFEQg5WOTVN8UoDRhZzyAMhgXwpXf9TtKWdwSeQyfxBXc2pT0zWpwom62WZH3SFi4mmiXJQ+eYX/6r0tkONncKStjwfNTAGI="));
 //        System.out.println(RSAUtil.genKeyPair());
 
     }

@@ -16,4 +16,6 @@ public interface UserService extends IService<User> {
     boolean update(User entity) throws Exception;
 
     boolean delete(Integer id);
+
+    boolean modifyPassword(Map<String, Object> params) throws Exception;
 }

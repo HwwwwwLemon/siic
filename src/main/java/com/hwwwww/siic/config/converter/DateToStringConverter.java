@@ -18,7 +18,6 @@ public class DateToStringConverter implements Converter<Date, String> {
 
     @Override
     public String convert(Date source) {
-
         try {
             SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
             System.out.println(format.format(source));

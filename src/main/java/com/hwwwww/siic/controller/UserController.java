@@ -32,7 +32,7 @@ public class UserController {
         return objectMapper.writeValueAsString(service.selectUserWithPage(params));
     }
 
-     @RespBodyResMapping("get-by-id")
+    @RespBodyResMapping("get-by-id")
     public Map<String, Object> getUserById(Integer id) throws Exception {
         Map<String, Object> map = new HashMap<>();
         map.put("user", service.getUserById(id));
@@ -52,5 +52,10 @@ public class UserController {
     @RespBodyResMapping("/del")
     public boolean deleteUser(Integer id) {
         return service.delete(id);
+    }
+
+    @RespBodyResMapping("/modify-password")
+    public boolean modifyPassword(@RequestParam Map<String, Object> params) throws Exception {
+        return service.modifyPassword(params);
     }
 }

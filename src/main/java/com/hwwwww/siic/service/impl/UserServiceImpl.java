@@ -65,12 +65,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public boolean update(User entity) throws Exception {
-        entity.setPassword(rsa.publicKeyDecrypt(entity.getPassword()));
+        entity.setPassword(rsa.privateKeyDecrypt(entity.getPassword()));
         return this.updateById(entity);
     }
 
     @Override
     public boolean delete(Integer id) {
         return this.removeById(id);
+    }
+
+    @Override
+    public boolean modifyPassword(Map<String, Object> params) throws Exception {
+        int id = Integer.parseInt((String) params.get("id"));
+        String originalPassword = (String) params.get("originalPassword");
+        User user = this.getById(id);
+        originalPassword = rsa.privateKeyDecrypt(originalPassword);
+        if (originalPassword.equals(user.getPassword())) {
+            return true;
+        }
+        return false;
     }
 }

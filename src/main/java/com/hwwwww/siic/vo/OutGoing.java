@@ -1,9 +1,6 @@
 package com.hwwwww.siic.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,14 +9,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-    * 外出登记
-    */
+ * 外出登记
+ */
 @Data
 @TableName(value = "outgoing")
-public class Outgoing implements Serializable {
+public class OutGoing implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableLogic
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
@@ -92,6 +90,8 @@ public class Outgoing implements Serializable {
     /**
      * 审批时间
      */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "audit_tine")
     private Date auditTine;
 
