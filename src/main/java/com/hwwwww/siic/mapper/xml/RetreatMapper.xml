@@ -13,11 +13,12 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
     <result column="audit_person" jdbcType="VARCHAR" property="auditPerson" />
-    <result column="audit_tine" jdbcType="TIMESTAMP" property="auditTine" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, is_deleted, customerid, retreat_time, retreat_type, retreat_reason, `status`, 
-    audit_status, audit_person, audit_tine
+    audit_status, audit_person, audit_time, remarks
   </sql>
 </mapper>

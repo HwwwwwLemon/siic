@@ -52,7 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User getUserById(Integer id) throws Exception {
-        User u = getById(id);
+        User u = this.getById(id);
         u.setPassword(rsa.privateKeyEncrypt(u.getPassword()));
         return u;
     }

@@ -1,16 +1,17 @@
 package com.hwwwww.siic.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.BedService;
 import com.hwwwww.siic.vo.Bed;
+import com.hwwwww.siic.vo.Selector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,34 +27,31 @@ public class BedController {
 
 
     @RespBodyResMapping("/query")
-    public String getByRoomNumberBedNumber(@RequestParam Map<String, Object> map) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(service.selectBedInfoWithBuildingNumberRoomNumber(map));
+    public Map<String, Object> getByRoomNumberBedNumber(@RequestParam Map<String, Object> map) throws JsonProcessingException {
+
+        return service.selectBedInfoWithBuildingNumberRoomNumber(map);
     }
 
     @RespBodyResMapping("/get-by-id")
-    public String getById(Integer id) throws JsonProcessingException {
-         Map<String, Object> map = new HashMap<>(1);
+    public Map<String, Object> getById(Integer id) throws JsonProcessingException {
+        Map<String, Object> map = new HashMap<>(1);
         map.put("bed", service.getById(id));
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(map);
+        return map;
     }
 
     @RespBodyResMapping("/get-room-number")
-    public String getRoomNumber() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(service.selectRoomNumber());
+    public List<Selector> getRoomNumber() throws JsonProcessingException {
+        return service.selectRoomNumber();
 
     }
 
     @RespBodyResMapping("/get-bed-number")
-    public String getBedNumber(@RequestParam(value = "roomNumber") Integer roomNumber) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(service.selectBedOptions(roomNumber));
+    public List<Selector> getBedNumber(@RequestParam(value = "roomNumber") Integer roomNumber) throws JsonProcessingException {
+        return service.selectBedOptions(roomNumber);
 
     }
 
-     @RespBodyResMapping("/add")
+    @RespBodyResMapping("/add")
     public boolean addBed(Bed bed) {
         return service.insert(bed);
     }

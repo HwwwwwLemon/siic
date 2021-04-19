@@ -1,9 +1,7 @@
 package com.hwwwww.siic.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.UserService;
-import com.hwwwww.siic.utils.RSAUtil;
 import com.hwwwww.siic.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +21,11 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService service;
-    @Autowired
-    private RSAUtil rsa;
 
     @RespBodyResMapping("/query")
-    public String getUsers(@RequestParam Map<String, Object> params) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(service.selectUserWithPage(params));
+    public  Map<String, Object> getUsers(@RequestParam Map<String, Object> params) throws Exception {
+
+        return service.selectUserWithPage(params);
     }
 
     @RespBodyResMapping("get-by-id")

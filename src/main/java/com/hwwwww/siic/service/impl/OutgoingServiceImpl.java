@@ -7,13 +7,13 @@ import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.OutgoingMapper;
 import com.hwwwww.siic.service.OutgoingService;
 import com.hwwwww.siic.vo.OutGoing;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
+@Slf4j
 public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> implements OutgoingService {
     @Override
     public Map<String, Object> selectOutGoingWithPage(Map<String, Object> params) throws Exception {
@@ -36,5 +36,47 @@ public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> i
         result.put("totalCount", pageInfo.getTotal());
         result.put("list", outGoingList);
         return result;
+    }
+
+    @Override
+    public boolean updateAudit(List<OutGoing> outGoingList) {
+        List<OutGoing> passList = new LinkedList<>();
+        for (OutGoing outGoing : outGoingList) {
+            long diff = System.currentTimeMillis() - outGoing.getAuditTime().getTime();
+            log.info(String.valueOf(diff));
+            if (diff < 60 * 1000) {
+                passList.add(outGoing);
+            }
+        }
+        return this.updateBatchById(passList);
+    }
+
+    @Override
+    public OutGoing getOutGoingById(Integer id) throws Exception {
+        return this.getById(id);
+    }
+
+    @Override
+    public boolean insert(OutGoing entity) throws Exception {
+        return this.save(entity);
+    }
+
+    @Override
+    public boolean update(OutGoing entity) throws Exception {
+
+        if (entity.getActualReturnTime() != null) {
+            long fromFront = entity.getActualReturnTime().getTime();
+            long outGoingTime = entity.getOutgoingTime().getTime();
+            long difference = fromFront - outGoingTime;
+            if (difference < 0) {
+                return false;
+            }
+        }
+        return this.updateById(entity);
+    }
+
+    @Override
+    public boolean delete(Integer id) {
+        return this.removeById(id);
     }
 }

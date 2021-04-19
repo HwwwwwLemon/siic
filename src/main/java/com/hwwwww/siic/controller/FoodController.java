@@ -1,7 +1,6 @@
 package com.hwwwww.siic.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.FoodService;
 import com.hwwwww.siic.vo.Food;
@@ -54,17 +53,15 @@ public class FoodController {
     }
 
     @RespBodyResMapping("get-by-id")
-    public String getFoodById(Integer id) throws JsonProcessingException {
+    public Map<String, Object> getFoodById(Integer id) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>(1);
         map.put("food", service.getById(id));
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(map);
+        return map;
     }
 
     @RespBodyResMapping("get-by-id-list")
-    public String getFoodByIdList(@RequestBody List<Integer> idList) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(service.getFoodByIdList(idList));
+    public List<Food> getFoodByIdList(@RequestBody List<Integer> idList) throws JsonProcessingException {
+        return service.getFoodByIdList(idList);
     }
 
     @RespBodyResMapping("get-quantity")

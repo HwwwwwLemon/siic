@@ -1,7 +1,6 @@
 package com.hwwwww.siic.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.CustomerFoodService;
 import com.hwwwww.siic.vo.CustomerFood;
@@ -27,7 +26,6 @@ public class CustomerFoodController {
 
     @RespBodyResMapping("/query")
     public Map<String, Object> getAllCustomerFoods(@RequestParam Map<String, Object> params) throws JsonProcessingException {
-
         return service.selectCustomerFoodWithPage(params);
 
     }

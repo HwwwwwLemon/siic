@@ -5,15 +5,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 外出登记
+ * @author Hwwwww
  */
 @Data
 @TableName(value = "outgoing")
-public class OutGoing implements Serializable {
+public class OutGoing {
+
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -92,8 +93,14 @@ public class OutGoing implements Serializable {
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(value = "audit_tine")
-    private Date auditTine;
+    @TableField(value = "audit_time")
+    private Date auditTime;
+
+    /**
+     * 备注
+     */
+    @TableField(value = "remarks")
+    private String remarks;
 
     public static final String COL_ID = "id";
 
@@ -119,5 +126,7 @@ public class OutGoing implements Serializable {
 
     public static final String COL_AUDIT_PERSON = "audit_person";
 
-    public static final String COL_AUDIT_TINE = "audit_tine";
+    public static final String COL_AUDIT_TIME = "audit_time";
+
+    public static final String COL_REMARKS = "remarks";
 }

@@ -8,20 +8,21 @@
     <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="customerid" jdbcType="INTEGER" property="customerid" />
     <result column="outgoing_reason" jdbcType="VARCHAR" property="outgoingReason" />
-    <result column="outgoing_time" jdbcType="TIMESTAMP" javaType="java.util.Date" property="outgoingTime" />
-    <result column="expected_return_time" jdbcType="TIMESTAMP" javaType="java.util.Date" property="expectedReturnTime" />
-    <result column="actual_return_time" jdbcType="TIMESTAMP" javaType="java.util.Date" property="actualReturnTime" />
+    <result column="outgoing_time" jdbcType="TIMESTAMP" property="outgoingTime" />
+    <result column="expected_return_time" jdbcType="TIMESTAMP" property="expectedReturnTime" />
+    <result column="actual_return_time" jdbcType="TIMESTAMP" property="actualReturnTime" />
     <result column="escorted" jdbcType="VARCHAR" property="escorted" />
     <result column="relation" jdbcType="VARCHAR" property="relation" />
     <result column="escorted_tel" jdbcType="VARCHAR" property="escortedTel" />
     <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
     <result column="audit_person" jdbcType="VARCHAR" property="auditPerson" />
-    <result column="audit_tine" jdbcType="TIMESTAMP" javaType="java.util.Date" property="auditTine" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, is_deleted, customerid, outgoing_reason, outgoing_time, expected_return_time, 
     actual_return_time, escorted, relation, escorted_tel, audit_status, audit_person, 
-    audit_tine
+    audit_time, remarks
   </sql>
 </mapper>

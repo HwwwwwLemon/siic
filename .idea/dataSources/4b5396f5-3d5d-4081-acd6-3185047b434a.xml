@@ -1550,216 +1550,225 @@ student|||hwm|localhost|UPDATE|G</Grants>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="401" parent="303" name="audit_tine">
+    <column id="401" parent="303" name="audit_time">
       <Position>13</Position>
       <Comment>审批时间</Comment>
       <DataType>datetime(6)|0s</DataType>
     </column>
-    <key id="402" parent="303" name="PRIMARY">
+    <column id="402" parent="303" name="remarks">
+      <Position>14</Position>
+      <Comment>备注</Comment>
+      <DataType>varchar(1024)|0s</DataType>
+    </column>
+    <key id="403" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="403" parent="304" name="id">
+    <column id="404" parent="304" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="404" parent="304" name="is_deleted">
+    <column id="405" parent="304" name="is_deleted">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="405" parent="304" name="customerid">
+    <column id="406" parent="304" name="customerid">
       <Position>3</Position>
       <Comment>客户ID</Comment>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="406" parent="304" name="retreat_time">
+    <column id="407" parent="304" name="retreat_time">
       <Position>4</Position>
       <Comment>退住时间</Comment>
       <DataType>datetime(6)|0s</DataType>
     </column>
-    <column id="407" parent="304" name="retreat_type">
+    <column id="408" parent="304" name="retreat_type">
       <Position>5</Position>
       <Comment>退住类型</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="408" parent="304" name="retreat_reason">
+    <column id="409" parent="304" name="retreat_reason">
       <Position>6</Position>
       <Comment>退出原因</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="409" parent="304" name="status">
+    <column id="410" parent="304" name="status">
       <Position>7</Position>
       <Comment>状态：已申请，审批通过，审批未通过</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="410" parent="304" name="audit_status">
+    <column id="411" parent="304" name="audit_status">
       <Position>8</Position>
       <Comment>审核意见</Comment>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(512)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="411" parent="304" name="audit_person">
+    <column id="412" parent="304" name="audit_person">
       <Position>9</Position>
       <Comment>审核人</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="412" parent="304" name="audit_tine">
+    <column id="413" parent="304" name="audit_time">
       <Position>10</Position>
       <Comment>审核时间</Comment>
       <DataType>datetime(6)|0s</DataType>
     </column>
-    <key id="413" parent="304" name="PRIMARY">
+    <column id="414" parent="304" name="remarks">
+      <Position>11</Position>
+      <DataType>varchar(1024)|0s</DataType>
+    </column>
+    <key id="415" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="414" parent="305" name="PRIMARY_ID">
+    <column id="416" parent="305" name="PRIMARY_ID">
       <Position>1</Position>
       <DataType>char(36)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="415" parent="305" name="SESSION_ID">
+    <column id="417" parent="305" name="SESSION_ID">
       <Position>2</Position>
       <DataType>char(36)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="416" parent="305" name="CREATION_TIME">
+    <column id="418" parent="305" name="CREATION_TIME">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="417" parent="305" name="LAST_ACCESS_TIME">
+    <column id="419" parent="305" name="LAST_ACCESS_TIME">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="418" parent="305" name="MAX_INACTIVE_INTERVAL">
+    <column id="420" parent="305" name="MAX_INACTIVE_INTERVAL">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="419" parent="305" name="EXPIRY_TIME">
+    <column id="421" parent="305" name="EXPIRY_TIME">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="420" parent="305" name="PRINCIPAL_NAME">
+    <column id="422" parent="305" name="PRINCIPAL_NAME">
       <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <index id="421" parent="305" name="SPRING_SESSION_IX1">
+    <index id="423" parent="305" name="SPRING_SESSION_IX1">
       <ColNames>SESSION_ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="422" parent="305" name="SPRING_SESSION_IX2">
+    <index id="424" parent="305" name="SPRING_SESSION_IX2">
       <ColNames>EXPIRY_TIME</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="423" parent="305" name="SPRING_SESSION_IX3">
+    <index id="425" parent="305" name="SPRING_SESSION_IX3">
       <ColNames>PRINCIPAL_NAME</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="424" parent="305" name="PRIMARY">
+    <key id="426" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>PRIMARY_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="425" parent="305" name="SPRING_SESSION_IX1">
+    <key id="427" parent="305" name="SPRING_SESSION_IX1">
       <ColNames>SESSION_ID</ColNames>
       <UnderlyingIndexName>SPRING_SESSION_IX1</UnderlyingIndexName>
     </key>
-    <column id="426" parent="306" name="SESSION_PRIMARY_ID">
+    <column id="428" parent="306" name="SESSION_PRIMARY_ID">
       <Position>1</Position>
       <DataType>char(36)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="427" parent="306" name="ATTRIBUTE_NAME">
+    <column id="429" parent="306" name="ATTRIBUTE_NAME">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="428" parent="306" name="ATTRIBUTE_BYTES">
+    <column id="430" parent="306" name="ATTRIBUTE_BYTES">
       <Position>3</Position>
       <DataType>blob|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="429" parent="306" name="PRIMARY">
+    <key id="431" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SESSION_PRIMARY_ID
 ATTRIBUTE_NAME</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="430" parent="306" name="SPRING_SESSION_ATTRIBUTES_FK">
+    <foreign-key id="432" parent="306" name="SPRING_SESSION_ATTRIBUTES_FK">
       <ColNames>SESSION_PRIMARY_ID</ColNames>
       <RefTableName>spring_session</RefTableName>
       <RefColNames>PRIMARY_ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="431" parent="307" name="id">
+    <column id="433" parent="307" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="432" parent="307" name="is_deleted">
+    <column id="434" parent="307" name="is_deleted">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="433" parent="307" name="nickname">
+    <column id="435" parent="307" name="nickname">
       <Position>3</Position>
       <Comment>昵称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="434" parent="307" name="username">
+    <column id="436" parent="307" name="username">
       <Position>4</Position>
       <Comment>用户姓名</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="435" parent="307" name="password">
+    <column id="437" parent="307" name="password">
       <Position>5</Position>
       <Comment>用户密码</Comment>
       <DataType>varchar(1024)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="436" parent="307" name="sex">
+    <column id="438" parent="307" name="sex">
       <Position>6</Position>
       <Comment>性别</Comment>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="437" parent="307" name="email">
+    <column id="439" parent="307" name="email">
       <Position>7</Position>
       <Comment>邮箱地址</Comment>
       <DataType>varchar(254)|0s</DataType>
     </column>
-    <column id="438" parent="307" name="phone_number">
+    <column id="440" parent="307" name="phone_number">
       <Position>8</Position>
       <Comment>电话号码</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="439" parent="307" name="user_code">
+    <column id="441" parent="307" name="user_code">
       <Position>9</Position>
       <Comment>员工编号</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="440" parent="307" name="PRIMARY">
+    <key id="442" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

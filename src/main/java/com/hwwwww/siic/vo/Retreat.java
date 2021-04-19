@@ -1,25 +1,23 @@
 package com.hwwwww.siic.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
-    * 退住登记
-    */
+ * 退住登记
+ */
 @Data
 @TableName(value = "retreat")
-public class Retreat implements Serializable {
+public class Retreat {
+    public static final String COL_AUDIT_TINE = "audit_tine";
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableLogic
     @TableField(value = "is_deleted")
     private Integer isDeleted;
 
@@ -72,8 +70,11 @@ public class Retreat implements Serializable {
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField(value = "audit_tine")
-    private Date auditTine;
+    @TableField(value = "audit_time")
+    private Date auditTime;
+
+    @TableField(value = "remarks")
+    private String remarks;
 
     public static final String COL_ID = "id";
 
@@ -93,5 +94,7 @@ public class Retreat implements Serializable {
 
     public static final String COL_AUDIT_PERSON = "audit_person";
 
-    public static final String COL_AUDIT_TINE = "audit_tine";
+    public static final String COL_AUDIT_TIME = "audit_time";
+
+    public static final String COL_REMARKS = "remarks";
 }

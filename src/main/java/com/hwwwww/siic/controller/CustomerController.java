@@ -1,7 +1,6 @@
 package com.hwwwww.siic.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.CustomerService;
 import com.hwwwww.siic.vo.Customer;
@@ -63,12 +62,11 @@ public class CustomerController {
     }
 
     @RespBodyResMapping("/get-by-id")
-    public String getCustomerById(Integer id) throws JsonProcessingException {
+    public Map<String, Object> getCustomerById(Integer id) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>(1);
         map.put("customer", service.getById(id));
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        return objectMapper.writeValueAsString(map);
+        return map;
     }
 
     @RespBodyResMapping("/get-record-id")
