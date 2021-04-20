@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwwwww.siic.mapper.CustomerMapper">
-    <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.Customer">
-        <!--@mbg.generated-->
-        <!--@Table customer-->
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="is_deleted" jdbcType="INTEGER" property="isDeleted"/>
-        <result column="customer_name" jdbcType="VARCHAR" property="customerName"/>
-        <result column="customer_age" jdbcType="INTEGER" property="customerAge"/>
-        <result column="customer_sex" jdbcType="INTEGER" property="customerSex"/>
-        <result column="idcard" jdbcType="VARCHAR" property="idcard"/>
-        <result column="room_number" jdbcType="VARCHAR" property="roomNumber"/>
-        <result column="building_id" jdbcType="INTEGER" property="buildingId"/>
-        <result column="record_id" jdbcType="INTEGER" property="recordId"/>
-        <result column="elder_type" jdbcType="VARCHAR" property="elderType"/>
-        <result column="checkin_date" jdbcType="DATE" javaType="java.util.Date" property="checkinDate"/>
-        <result column="expiration_date" jdbcType="DATE" javaType="java.util.Date" property="expirationDate"/>
-        <result column="contact_tel" jdbcType="VARCHAR" property="contactTel"/>
-        <result column="bed_id" jdbcType="INTEGER" property="bedId"/>
-        <result column="psychosomatic_state" jdbcType="VARCHAR" property="psychosomaticState"/>
-        <result column="attention" jdbcType="VARCHAR" property="attention"/>
-        <result column="birthday" jdbcType="DATE" javaType="java.util.Date" property="birthday"/>
-        <result column="height" jdbcType="VARCHAR" property="height"/>
-        <result column="marital_status" jdbcType="VARCHAR" property="maritalStatus"/>
-        <result column="weight" jdbcType="VARCHAR" property="weight"/>
-        <result column="blood_type" jdbcType="VARCHAR" property="bloodType"/>
-        <result column="filepath" jdbcType="VARCHAR" property="filepath"/>
-    </resultMap>
+  <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.Customer">
+    <!--@mbg.generated-->
+    <!--@Table customer-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="customer_age" jdbcType="INTEGER" property="customerAge" />
+    <result column="customer_sex" jdbcType="VARCHAR" property="customerSex" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="elder_type" jdbcType="VARCHAR" property="elderType" />
+    <result column="checkin_date" jdbcType="TIMESTAMP" property="checkinDate" />
+    <result column="expiration_date" jdbcType="TIMESTAMP" property="expirationDate" />
+    <result column="contact_tel" jdbcType="VARCHAR" property="contactTel" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
+    <result column="bed_id" jdbcType="INTEGER" property="bedId" />
+    <result column="nurse_level" jdbcType="INTEGER" property="nurseLevel" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+    <result column="nurse_id" jdbcType="INTEGER" property="nurseId" />
+    <result column="nursing_workers_id" jdbcType="INTEGER" property="nursingWorkersId" />
+    <result column="psychosomatic_state" jdbcType="VARCHAR" property="psychosomaticState" />
+    <result column="food_attention" jdbcType="VARCHAR" property="foodAttention" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="marital_status" jdbcType="VARCHAR" property="maritalStatus" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="blood_type" jdbcType="VARCHAR" property="bloodType" />
+    <result column="filepath" jdbcType="VARCHAR" property="filepath" />
+    <result column="attention" jdbcType="VARCHAR" property="attention" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, is_deleted, customer_name, customer_age, customer_sex, idcard, record_id, elder_type, 
+    checkin_date, expiration_date, contact_tel, building_id, room_number, bed_id, nurse_level, 
+    doctor_id, nurse_id, nursing_workers_id, psychosomatic_state, food_attention, birthday, 
+    height, marital_status, weight, blood_type, filepath, attention
+  </sql>
 
-    <resultMap id="CustomerMap" extends="BaseResultMap" type="map">
-        <result column="bed_id_name" jdbcType="VARCHAR" property="bedIdName"/>
+    <resultMap extends="BaseResultMap" id="CustomerMap" type="map">
+        <result column="bed_id_name" jdbcType="VARCHAR" property="bedIdName" />
     </resultMap>
 
     <resultMap id="BedTransfer" type="map">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="room_number" jdbcType="VARCHAR" property="roomNumber"/>
-        <result column="building_id" jdbcType="INTEGER" property="buildingId"/>
-        <result column="customer_name" jdbcType="VARCHAR" property="customerName"/>
-        <result column="bed_id" jdbcType="INTEGER" property="bedId"/>
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
+        <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+        <result column="bed_id" jdbcType="INTEGER" property="bedId" />
     </resultMap>
-    <sql id="Base_Column_List">
-        <!--@mbg.generated-->
-        id, is_deleted, customer_name, customer_age, customer_sex, idcard, room_number, building_id,
-        record_id, elder_type, checkin_date, expiration_date, contact_tel, bed_id, psychosomatic_state,
-        attention, birthday, height, marital_status, weight, blood_type, filepath
-    </sql>
 </mapper>

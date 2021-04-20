@@ -23,5 +23,8 @@ public interface CustomerService extends IService<Customer> {
     boolean updateTransferBed(Map<String, Object> params);
 
     String createRecordId();
+
     List<Selector> selectCustomerSelector();
+
+    Map<String, Object> selectCustomerWithBedId(Integer bedId);
 }

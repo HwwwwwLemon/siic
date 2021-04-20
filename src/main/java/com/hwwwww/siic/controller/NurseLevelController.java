@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.NurseLevelService;
 import com.hwwwww.siic.vo.NurseLevel;
+import com.hwwwww.siic.vo.Selector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,6 +36,12 @@ public class NurseLevelController {
         Map<String, Object> map = new HashMap<>();
         map.put("nurseLevel", service.getById(id));
         return map;
+    }
+
+    @RespBodyResMapping("/get-nurse-level")
+    public List<Selector> getNurseLevelSelector() throws JsonProcessingException {
+        return service.selectNurseLevelSelector();
+
     }
 
     @RespBodyResMapping("/add")

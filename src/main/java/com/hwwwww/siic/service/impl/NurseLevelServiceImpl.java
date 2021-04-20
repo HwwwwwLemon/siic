@@ -7,8 +7,10 @@ import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.NurseLevelMapper;
 import com.hwwwww.siic.service.NurseLevelService;
 import com.hwwwww.siic.vo.NurseLevel;
+import com.hwwwww.siic.vo.Selector;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,16 @@ public class NurseLevelServiceImpl extends ServiceImpl<NurseLevelMapper, NurseLe
         PageInfo<NurseLevel> pageInfo = new PageInfo<>(customers);
         result.put("totalCount", pageInfo.getTotal());
         result.put("list", customers);
+        return result;
+    }
+
+    @Override
+    public List<Selector> selectNurseLevelSelector() {
+        List<NurseLevel> selectR = this.list() ;
+        List<Selector> result = new ArrayList<>();
+        for (NurseLevel nurseLevel : selectR) {
+            result.add(new Selector(nurseLevel.getLevelName(), nurseLevel.getId()));
+        }
         return result;
     }
 

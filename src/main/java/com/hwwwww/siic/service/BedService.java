@@ -16,6 +16,13 @@ public interface BedService extends IService<Bed> {
      */
     List<Selector> selectRoomNumber();
 
+    List<Bed> selectBedWithFloorNumber(Integer floor);
+
+    List<Bed> selectBedWithRoomNumber(Integer roomNumber);
+
+    List<Bed> selectBedWithCustomerName(String name);
+
+    List<Bed> selectBedWithBedId(String bedInfo);
 
     Map<String, Object> selectBedInfoWithBuildingNumberRoomNumber(Map<String, Object> params);
 
@@ -49,7 +56,7 @@ public interface BedService extends IService<Bed> {
     /**
      * 修改房间床位的状态
      *
-     * @param id  房间的id
+     * @param id  床位的id
      * @param key 1为空闲 2为有人 3为外出
      * @return 是否成功
      */

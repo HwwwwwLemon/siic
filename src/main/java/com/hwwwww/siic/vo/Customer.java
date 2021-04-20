@@ -5,17 +5,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
-    * 客户信息
-    */
+ * 客户信息
+ */
 @Data
 @TableName(value = "customer")
-public class Customer implements Serializable {
+public class Customer {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
 
     @TableLogic
     @TableField(value = "is_deleted")
@@ -98,16 +98,37 @@ public class Customer implements Serializable {
     private Integer bedId;
 
     /**
+     * 护理等级
+     */
+    @TableField(value = "nurse_level")
+    private Integer nurseLevel;
+
+    /**
+     * 医生
+     */
+    @TableField(value = "doctor_id")
+    private Integer doctorId;
+
+    /**
+     * 护士
+     */
+    @TableField(value = "nurse_id")
+    private Integer nurseId;
+
+    /**
+     * 护工
+     */
+    @TableField(value = "nursing_workers_id")
+    private Integer nursingWorkersId;
+
+    /**
      * 精神状况：正常 非正常
      */
     @TableField(value = "psychosomatic_state")
     private String psychosomaticState;
 
-    /**
-     * 注意事项
-     */
-    @TableField(value = "attention")
-    private String attention;
+    @TableField(value = "food_attention")
+    private String foodAttention;
 
     /**
      * 生日
@@ -147,6 +168,12 @@ public class Customer implements Serializable {
     @TableField(value = "filepath")
     private String filepath;
 
+    /**
+     * 注意事项
+     */
+    @TableField(value = "attention")
+    private String attention;
+
     public static final String COL_ID = "id";
 
     public static final String COL_IS_DELETED = "is_deleted";
@@ -175,9 +202,17 @@ public class Customer implements Serializable {
 
     public static final String COL_BED_ID = "bed_id";
 
+    public static final String COL_NURSE_LEVEL = "nurse_level";
+
+    public static final String COL_DOCTOR_ID = "doctor_id";
+
+    public static final String COL_NURSE_ID = "nurse_id";
+
+    public static final String COL_NURSING_WORKERS_ID = "nursing_workers_id";
+
     public static final String COL_PSYCHOSOMATIC_STATE = "psychosomatic_state";
 
-    public static final String COL_ATTENTION = "attention";
+    public static final String COL_FOOD_ATTENTION = "food_attention";
 
     public static final String COL_BIRTHDAY = "birthday";
 
@@ -190,4 +225,6 @@ public class Customer implements Serializable {
     public static final String COL_BLOOD_TYPE = "blood_type";
 
     public static final String COL_FILEPATH = "filepath";
+
+    public static final String COL_ATTENTION = "attention";
 }

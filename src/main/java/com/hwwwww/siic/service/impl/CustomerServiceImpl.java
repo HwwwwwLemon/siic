@@ -114,6 +114,11 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     }
 
     @Override
+    public Map<String, Object> selectCustomerWithBedId(Integer bedId) {
+        return baseMapper.selectCustomerWithBedId(bedId);
+    }
+
+    @Override
     public String createRecordId() {
         StringBuilder sb = new StringBuilder("SIIC");
         Date now = new Date();

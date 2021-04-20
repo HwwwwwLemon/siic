@@ -35,6 +35,11 @@ public class NurseLevelContentServiceImpl extends ServiceImpl<NurseLevelContentM
     }
 
     @Override
+    public List<Map<String, Object>> selectNurseLevelContentByNurseLevelId(Integer nurseLevelId) {
+        return baseMapper.selectNurseLevelContentByNurseLevelId(nurseLevelId);
+    }
+
+    @Override
     public boolean insert(NurseLevelContent entity) {
         System.out.println(entity);
         return this.save(entity);

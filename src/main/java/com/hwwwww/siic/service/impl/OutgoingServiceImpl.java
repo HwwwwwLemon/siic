@@ -5,16 +5,28 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.OutgoingMapper;
+import com.hwwwww.siic.service.BedService;
+import com.hwwwww.siic.service.CustomerService;
 import com.hwwwww.siic.service.OutgoingService;
+import com.hwwwww.siic.vo.Customer;
 import com.hwwwww.siic.vo.OutGoing;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
 public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> implements OutgoingService {
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private BedService bedService;
+
     @Override
     public Map<String, Object> selectOutGoingWithPage(Map<String, Object> params) throws Exception {
         Map<String, Object> result = new HashMap<>(2);
@@ -42,8 +54,9 @@ public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> i
     public boolean updateAudit(List<OutGoing> outGoingList) {
         List<OutGoing> passList = new LinkedList<>();
         for (OutGoing outGoing : outGoingList) {
+            Customer customer = customerService.getById(outGoing.getCustomerid());
+            bedService.changeBedStatus(customer.getBedId(), 3);
             long diff = System.currentTimeMillis() - outGoing.getAuditTime().getTime();
-            log.info(String.valueOf(diff));
             if (diff < 60 * 1000) {
                 passList.add(outGoing);
             }
@@ -63,7 +76,6 @@ public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> i
 
     @Override
     public boolean update(OutGoing entity) throws Exception {
-
         if (entity.getActualReturnTime() != null) {
             long fromFront = entity.getActualReturnTime().getTime();
             long outGoingTime = entity.getOutgoingTime().getTime();
@@ -71,6 +83,8 @@ public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> i
             if (difference < 0) {
                 return false;
             }
+            Customer customer = customerService.getById(entity.getCustomerid());
+            bedService.changeBedStatus(customer.getBedId(), 2);
         }
         return this.updateById(entity);
     }

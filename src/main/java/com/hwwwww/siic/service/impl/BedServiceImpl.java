@@ -6,18 +6,19 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.BedMapper;
 import com.hwwwww.siic.service.BedService;
+import com.hwwwww.siic.service.CustomerService;
 import com.hwwwww.siic.vo.Bed;
+import com.hwwwww.siic.vo.Customer;
 import com.hwwwww.siic.vo.Selector;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class BedServiceImpl extends ServiceImpl<BedMapper, Bed> implements BedService {
-
+    @Autowired
+    private CustomerService customerService;
 
     @Override
     public boolean changeBedStatus(Integer id, Integer key) {
@@ -34,6 +35,37 @@ public class BedServiceImpl extends ServiceImpl<BedMapper, Bed> implements BedSe
             result.add(new Selector(id, id));
         }
         return result;
+    }
+
+    @Override
+    public List<Bed> selectBedWithFloorNumber(Integer floor) {
+        QueryWrapper<Bed> queryWrapper = new QueryWrapper<>();
+        queryWrapper.likeRight("room_number", floor);
+        return this.list(queryWrapper);
+    }
+
+    @Override
+    public List<Bed> selectBedWithCustomerName(String name) {
+        List<Customer> customers = customerService.list(new QueryWrapper<Customer>().eq("customer_name", name));
+        List<Integer> bedId = new LinkedList<>();
+        for (Customer customer : customers) {
+            bedId.add(customer.getBedId());
+        }
+        return this.listByIds(bedId);
+    }
+
+    @Override
+    public List<Bed> selectBedWithRoomNumber(Integer roomNumber) {
+        return this.list(new QueryWrapper<Bed>().eq("room_number", roomNumber));
+    }
+
+    @Override
+    public List<Bed> selectBedWithBedId(String bedInfo) {
+        if (bedInfo.indexOf('-') < 0) {
+            return null;
+        }
+        String[] temp = bedInfo.split("-");
+        return this.list(new QueryWrapper<Bed>().eq("room_number", temp[0]).eq("name", temp[1]));
     }
 
     @Override

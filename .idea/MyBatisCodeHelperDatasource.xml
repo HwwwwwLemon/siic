@@ -52,6 +52,8 @@
                   <option name="insertSelectiveMethodEnabled" value="false" />
                   <option name="javaModelName" value="Customer" />
                   <option name="moduleName" value="siic" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
                   <option name="updateByPrimaryKeySelectiveEnabled" value="false" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
