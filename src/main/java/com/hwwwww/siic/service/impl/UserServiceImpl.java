@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.UserMapper;
 import com.hwwwww.siic.service.UserService;
 import com.hwwwww.siic.utils.RSAUtil;
+import com.hwwwww.siic.utils.TokenUtil;
 import com.hwwwww.siic.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,5 +85,56 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Map<String, Object> login(Map<String, Object> params) throws Exception {
+        Map<String, Object> map = new HashMap<>(4);
+        String username = (String) params.get("username");
+        String password = (String) params.get("password");
+        password = rsa.privateKeyDecrypt(password);
+        User user = this.getOne(new QueryWrapper<User>().eq("username", username));
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                map.put("token", TokenUtil.sign(username));
+                map.put("id", user.getId());
+                map.put("name", user.getNickname());
+                map.put("username", user.getUsername());
+            }
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> logout(String token) {
+        Map<String, Object> map = new HashMap<>(4);
+        String username = TokenUtil.getInfo(token);
+        if (username != null) {
+            User user = this.getOne(new QueryWrapper<User>().eq("username", username));
+            if (user != null) {
+                map.put("token", TokenUtil.sign(username));
+                map.put("id", user.getId());
+                map.put("name", user.getNickname());
+
+            }
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getInfo(String token) {
+        Map<String, Object> map = new HashMap<>(4);
+        String username = TokenUtil.getInfo(token);
+        if (username != null) {
+            User user = this.getOne(new QueryWrapper<User>().eq("username", username));
+            if (user != null) {
+                map.put("token", TokenUtil.sign(username));
+                map.put("id", user.getId());
+                map.put("name", user.getNickname());
+                map.put("username", user.getUsername());
+            }
+        }
+
+        return map;
     }
 }

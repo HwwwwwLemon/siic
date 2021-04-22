@@ -18,4 +18,10 @@ public interface UserService extends IService<User> {
     boolean delete(Integer id);
 
     boolean modifyPassword(Map<String, Object> params) throws Exception;
+
+    Map<String, Object> login(Map<String, Object> params) throws Exception;
+
+    Map<String, Object> logout(String token);
+
+    Map<String, Object> getInfo(String token);
 }

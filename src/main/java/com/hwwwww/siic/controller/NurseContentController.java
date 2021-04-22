@@ -3,13 +3,13 @@ package com.hwwwww.siic.controller;
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.NurseContentService;
 import com.hwwwww.siic.vo.NurseContent;
-import com.hwwwww.siic.vo.NurseLevelContent;
 import com.hwwwww.siic.vo.Selector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +29,12 @@ public class NurseContentController {
     public Map<String, Object> getNurseContent(@RequestParam Map<String, Object> params) {
         return service.selectNurseContentWithPage(params);
     }
-
+    @RespBodyResMapping("get-by-id")
+    public Map<String, Object> getNurseContentById(Integer id) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("nurseContent", service.getById(id));
+        return map;
+    }
     @RespBodyResMapping("/add")
     public boolean addNurseContent(NurseContent nurseContent) {
         return service.insert(nurseContent);

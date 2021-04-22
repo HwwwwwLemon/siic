@@ -76,7 +76,7 @@ public class FoodController {
         String netPicPath = "";
         int code = 500;
         Map<String, Object> map = new HashMap<>(2);
-        String filePath = ResourceUtils.getURL("classpath:static").getPath() + "/";
+        String filePath = ResourceUtils.getURL("classpath:static").getPath() + "/images/";
         if (file != null) {
             originName = file.getOriginalFilename();
             File foodPic = new File(filePath + path + originName);

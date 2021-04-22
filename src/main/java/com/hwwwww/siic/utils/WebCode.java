@@ -7,6 +7,8 @@ package com.hwwwww.siic.utils;
  */
 public interface WebCode {
     Integer NOT_FOUND = 404;
-    Integer TOKEN_VERIFY_FAILED = 2001;
+    //    Integer TOKEN_VERIFY_FAILED = 50002;
+    Integer TOKEN_ILLEGAL = 50008;
+    Integer TOKEN_EXPIRED = 50014;
     Integer USER_NOT_FOUND = 2003;
 }
