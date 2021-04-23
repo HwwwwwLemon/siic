@@ -7,9 +7,11 @@ import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.BedMapper;
 import com.hwwwww.siic.service.BedService;
 import com.hwwwww.siic.service.CustomerService;
+import com.hwwwww.siic.utils.MyLogger;
 import com.hwwwww.siic.vo.Bed;
 import com.hwwwww.siic.vo.Customer;
 import com.hwwwww.siic.vo.Selector;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,9 @@ public class BedServiceImpl extends ServiceImpl<BedMapper, Bed> implements BedSe
     public List<Bed> selectBedWithCustomerName(String name) {
         List<Customer> customers = customerService.list(new QueryWrapper<Customer>().eq("customer_name", name));
         List<Integer> bedId = new LinkedList<>();
+        if (customers.size() <= 0) {
+            return null;
+        }
         for (Customer customer : customers) {
             bedId.add(customer.getBedId());
         }
