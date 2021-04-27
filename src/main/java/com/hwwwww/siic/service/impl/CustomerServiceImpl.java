@@ -8,10 +8,10 @@ import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.CustomerMapper;
 import com.hwwwww.siic.service.BedService;
 import com.hwwwww.siic.service.CustomerService;
+import com.hwwwww.siic.service.NurseLevelService;
 import com.hwwwww.siic.utils.GeneralUtil;
 import com.hwwwww.siic.vo.Customer;
 import com.hwwwww.siic.vo.Selector;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +22,11 @@ import java.util.*;
  * @author Hwwwww
  */
 @Service
-@Slf4j
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
     @Autowired
     private BedService bedService;
+    @Autowired
+    private NurseLevelService nurseLevelService;
 
     @Override
     public Map<String, Object> selectCustomerWithPage(Map<String, Object> params) {
@@ -49,6 +50,27 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     }
 
     @Override
+    public Map<String, Object> selectCustomerToNurseRecord(Map<String, Object> params) {
+        Map<String, Object> result = this.selectCustomerWithPage(params);
+        List<Map<String, Object>> customers = (List<Map<String, Object>>) result.get("list");
+        List<Map<String, Object>> tempList = new LinkedList<>();
+        for (Map<String, Object> map : customers) {
+            Map<String, Object> tempMap = new HashMap<>(8);
+            tempMap.put("id", map.get("id"));
+            tempMap.put("customerAge", map.get("customerAge"));
+            tempMap.put("customerName", map.get("customerName"));
+            tempMap.put("customerSex", map.get("customerSex"));
+            tempMap.put("nurseLevel", map.get("nurseLevel"));
+            tempMap.put("levelName", map.get("levelName"));
+            tempMap.put("roomNumber", map.get("roomNumber"));
+            tempMap.put("bedIdName", map.get("bedIdName"));
+            tempList.add(tempMap);
+        }
+        result.put("list", tempList);
+        return result;
+    }
+
+    @Override
     public List<Map<String, Object>> selectCustomerBedInfo() {
         return baseMapper.selectCustomerBedInfo();
     }
@@ -65,6 +87,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
 
     @Override
     public boolean insert(Customer entity) {
+        bedService.getBedStatus(entity.getBedId());
         return this.save(entity) && bedService.changeBedStatus(entity.getBedId(), 2);
     }
 
@@ -73,8 +96,8 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         Integer lastBedId = this.getById(entity.getId()).getBedId();
         boolean result = this.updateById(entity);
         if (!lastBedId.equals(entity.getBedId())) {
-            log.debug("改动床位!");
             result = result && bedService.changeBedStatus(lastBedId, 1);
+            bedService.getBedStatus(entity.getBedId());
             result = result && bedService.changeBedStatus(entity.getBedId(), 2);
         }
         return result;

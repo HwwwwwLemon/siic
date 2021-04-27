@@ -28,7 +28,11 @@ public class CustomerController {
     @RespBodyResMapping("/query")
     public Map<String, Object> getAllCustomers(@RequestParam Map<String, Object> params) throws JsonProcessingException {
         return service.selectCustomerWithPage(params);
+    }
 
+    @RespBodyResMapping("/query2")
+    public Map<String, Object> getAllCustomerToNurseRecord(@RequestParam Map<String, Object> params) throws JsonProcessingException {
+        return service.selectCustomerToNurseRecord(params);
     }
 
     @RespBodyResMapping("/get-customer-selector")

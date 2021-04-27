@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Mapper
 public interface CustomerMapper extends BaseMapper<Customer> {
-    @Select("select c.*,b.name bed_id_name from customer c,bed b ${ew.customSqlSegment} AND c.bed_id = b.id AND c.is_deleted=1")
+    @Select("select c.*,b.name bed_id_name,n.level_name from customer c,bed b,nurse_level n ${ew.customSqlSegment} AND c.nurse_level = n.id AND c.bed_id = b.id AND c.is_deleted=1")
     @ResultMap("CustomerMap")
     List<Map<String, Object>> selectCustomerbyName(@Param(Constants.WRAPPER) Wrapper<Map<String, Object>> userWrapper);
 

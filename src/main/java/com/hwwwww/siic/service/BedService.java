@@ -61,6 +61,7 @@ public interface BedService extends IService<Bed> {
      * @return 是否成功
      */
     boolean changeBedStatus(Integer id, Integer key);
+    boolean getBedStatus(Integer id);
 
     boolean insert(Bed entity);
 

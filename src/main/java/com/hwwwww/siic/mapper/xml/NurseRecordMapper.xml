@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.NurseRecordMapper">
+    <resultMap id="BaseResultMap" type="com.hwwwww.siic.vo.NurseRecord">
+        <!--@mbg.generated-->
+        <!--@Table nurse_record-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="is_deleted" jdbcType="INTEGER" property="isDeleted"/>
+        <result column="customerid" jdbcType="INTEGER" property="customerid"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="contentid" jdbcType="INTEGER" property="contentid"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,is_deleted, customerid, userid, contentid, createtime
+    </sql>
+</mapper>
