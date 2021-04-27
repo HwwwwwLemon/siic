@@ -12,6 +12,8 @@ public interface CustomerService extends IService<Customer> {
 
     Map<String, Object> selectCustomerWithPage(Map<String, Object> params);
 
+    Map<String, Object> selectCustomerToNurseRecord(Map<String, Object> params);
+
     List<Map<String, Object>> selectCustomerBedInfo();
 
     boolean insert(Customer entity);

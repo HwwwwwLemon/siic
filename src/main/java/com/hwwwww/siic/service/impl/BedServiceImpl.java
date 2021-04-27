@@ -7,11 +7,9 @@ import com.github.pagehelper.PageInfo;
 import com.hwwwww.siic.mapper.BedMapper;
 import com.hwwwww.siic.service.BedService;
 import com.hwwwww.siic.service.CustomerService;
-import com.hwwwww.siic.utils.MyLogger;
 import com.hwwwww.siic.vo.Bed;
 import com.hwwwww.siic.vo.Customer;
 import com.hwwwww.siic.vo.Selector;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +21,21 @@ public class BedServiceImpl extends ServiceImpl<BedMapper, Bed> implements BedSe
     private CustomerService customerService;
 
     @Override
-    public boolean changeBedStatus(Integer id, Integer key) {
+    synchronized public boolean changeBedStatus(Integer id, Integer key) {
         Bed bed = this.getById(id);
-        bed.setBedStatus(getBedStatus(key));
+        bed.setBedStatus(bedStatus(key));
         return this.updateById(bed);
+    }
+
+    @Override
+    synchronized public boolean getBedStatus(Integer id) {
+        Bed bed = this.getById(id);
+        assert bed != null;
+        if (bedStatus(2).equals(bed.getBedStatus())) {
+            throw new RuntimeException("有人了!");
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -108,7 +117,7 @@ public class BedServiceImpl extends ServiceImpl<BedMapper, Bed> implements BedSe
     @Override
     public List<Bed> selectBedInfoWithRoomNumber(Integer roomNumber, Integer key) {
         QueryWrapper<Bed> wrapper = new QueryWrapper<>();
-        wrapper.eq("room_number", roomNumber).eq("bed_status", getBedStatus(key));
+        wrapper.eq("room_number", roomNumber).eq("bed_status", bedStatus(key));
         return baseMapper.selectList(wrapper);
     }
 
@@ -136,7 +145,7 @@ public class BedServiceImpl extends ServiceImpl<BedMapper, Bed> implements BedSe
         return baseMapper.selectById(id);
     }
 
-    private String getBedStatus(Integer key) {
+    private String bedStatus(Integer key) {
         switch (key) {
             case 1:
                 return "空闲";
