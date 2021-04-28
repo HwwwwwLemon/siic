@@ -1,6 +1,7 @@
 package com.hwwwww.siic.config.converter;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,7 +14,7 @@ import java.util.List;
  * @version JDK 15
  * @date 2021/4/11 22:08
  */
-
+@Component
 public class StringToDateConverter implements Converter<String, Date> {
     private static final List<String> FORMARTS = new ArrayList<>(4);
 

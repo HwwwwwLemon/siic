@@ -118,6 +118,11 @@
             <version>1.2.75</version>
         </dependency>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.8</version>
+        </dependency>
+        <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>3.8.2</version>
@@ -207,10 +212,63 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>${lombok.version}.0</version>
+                <executions>
+                    <execution>
+                        <id>delombok</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>delombok</goal>
+                        </goals>
+                        <configuration>
+                            <formatPreferences>
+                                <javaLangAsFQN>skip</javaLangAsFQN>
+                            </formatPreferences>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-delombok</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>testDelombok</goal>
+                        </goals>
+                        <configuration>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
                 <executions>
+                   <!-- <execution>
+                        <id>kapt</id>
+                        <goals>
+                            <goal>kapt</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>src/main/kotlin</sourceDir>
+                                <sourceDir>src/main/java</sourceDir>
+                            </sourceDirs>
+                            <annotationProcessors>
+                                <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor
+                                </annotationProcessor>
+                            </annotationProcessors>
+                            <annotationProcessorPaths>
+                                <annotationProcessorPath>
+                                    <groupId>org.projectlombok</groupId>
+                                    <artifactId>lombok</artifactId>
+                                    <version>${lombok.version}</version>
+                                </annotationProcessorPath>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>-->
                     <execution>
                         <id>compile</id>
                         <goals>
