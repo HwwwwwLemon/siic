@@ -8,6 +8,9 @@ import com.hwwwww.siic.mapper.NurseRecordMapper
 import com.hwwwww.siic.service.NurseRecordService
 import com.hwwwww.siic.vo.NurseRecord
 import org.springframework.stereotype.Service
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 @Service
 open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?>(), NurseRecordService {
@@ -34,5 +37,31 @@ open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?
         result["totalCount"] = pageInfo.total
         result["list"] = customers as Any
         return result
+    }
+
+    override fun selectNurseRecordTodayPlanByCustomerNameAndDate(params: Map<String, Any>?): List<Map<String, Any>>? {
+        if (params?.size!! <= 0) {
+            return null
+        }
+        val id = (params["id"] as String).toInt()
+        val contentName = params["contentName"] as String
+        return baseMapper?.selectNurseRecordTodayPlan(id, "$contentName%")
+    }
+
+    override fun insert(entity: NurseRecord?): Boolean {
+        //判断完成次数
+        val map: Map<String, Int>? = baseMapper?.selectDoneTimes(entity?.customerid, entity?.contentid)
+        val times: Int = map?.get("times")!!
+        val doneTimes: Int = map["doneTimes"]!!
+        if (times <= doneTimes) return false
+        return this.save(entity)
+    }
+
+    override fun update(entity: NurseRecord?): Boolean {
+        return this.updateById(entity)
+    }
+
+    override fun delete(id: Int): Boolean {
+        return this.removeById(id)
     }
 }
