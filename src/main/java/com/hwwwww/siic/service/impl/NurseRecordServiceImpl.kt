@@ -7,11 +7,14 @@ import com.github.pagehelper.PageInfo
 import com.hwwwww.siic.mapper.NurseRecordMapper
 import com.hwwwww.siic.service.NurseRecordService
 import com.hwwwww.siic.vo.NurseRecord
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import kotlin.collections.HashMap
 
 @Service
 open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?>(), NurseRecordService {
+    @Autowired
+    private lateinit var customerService: CustomerServiceImpl
 
     override fun selectNurseRecordByCustomerName(params: Map<String, Any>?): Map<String, Any>? {
         val result: MutableMap<String, Any> = HashMap(2)
@@ -45,24 +48,31 @@ open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?
         return baseMapper?.selectNurseRecordTodayPlan(id, "$contentName%")
     }
 
-    override fun selectNurseRecord2ExcelData(params: Map<String, Any>?): List<Map<String, Any>>? {
+    override fun selectNurseRecord2ExcelData(params: Map<String, Any>?, key: Int): List<Map<String, Any>>? {
+        var name: List<String> = listOf("")
         //按照名字搜索
-        val name = (params?.get("name") as String).split(",")
+        when (key) {
+            1 -> name = (params?.get("name") as String).split(",")
+            2 -> name = customerService.selectCustomerNames()
+            else -> {
+                throw RuntimeException("")
+            }
+        }
         //按照日期搜索
-        val startTime = params["startTime"] as String
+        val startTime = params?.get("startTime") as String
         val endTime = params["endTime"] as String
         val queryWrapper: QueryWrapper<Map<String, Any>> = QueryWrapper<Map<String, Any>>()
         queryWrapper.`in`("customer_name", name)
-        queryWrapper.between("createtime","$startTime 00:00:00","$endTime 23:59:59")
+        queryWrapper.between("createtime", "$startTime 00:00:00", "$endTime 23:59:59")
         return baseMapper?.selectNurseContentWithCustomerName(queryWrapper)
     }
 
 
     override fun insert(entity: NurseRecord?): Boolean {
         //判断完成次数
-        val map: Map<String, Int>? = baseMapper?.selectDoneTimes(entity?.customerid, entity?.contentid)
-        val times: Int = map?.get("times")!!
-        val doneTimes: Int = map["doneTimes"]!!
+        val map: Map<String, Any>? = baseMapper?.selectDoneTimes(entity?.customerid, entity?.contentid)
+        val times: Int = map?.get("times") as Int ?: 0
+        val doneTimes: Long = map["doneTimes"] as Long ?: 0
         if (times <= doneTimes) return false
         return this.save(entity)
     }

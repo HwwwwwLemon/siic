@@ -33,8 +33,8 @@ interface NurseRecordMapper : BaseMapper<NurseRecord?> {
                 "         left join nurse_record nr\n" +
                 "                   on (nr.createtime is null or date(nr.createtime) = CURRENT_DATE) and c.id = nr.customerid and\n" +
                 "                      nr.contentid = nlc.nurse_content_id\n" +
-                "where c.id = #{id}\n" +
+                "where c.id = #{id} and (nr.is_deleted = 1 or nr.is_deleted is null)\n" +
                 "group by nr.contentid;"
     )
-    fun selectDoneTimes(id: Int?, contentId: Int?): Map<String, Int>
+    fun selectDoneTimes(id: Int?, contentId: Int?): Map<String, Any>
 }

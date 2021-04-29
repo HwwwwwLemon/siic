@@ -16,6 +16,8 @@ public interface CustomerService extends IService<Customer> {
 
     List<Map<String, Object>> selectCustomerBedInfo();
 
+    List<String> selectCustomerNames();
+
     boolean insert(Customer entity);
 
     boolean update(Customer entity);

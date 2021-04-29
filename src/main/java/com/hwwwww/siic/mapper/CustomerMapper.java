@@ -25,6 +25,9 @@ public interface CustomerMapper extends BaseMapper<Customer> {
     @Select("select id,customer_name from customer Where  is_deleted=1")
     List<Customer> selectCustomerSelector();
 
+    @Select("select customer_name from customer Where is_deleted=1")
+    List<String> selectCustomerNames();
+
     @Select("select c.id, customer_name, customer_sex, customer_age,attention,food_attention, n.level_name,nurse_level, bed_status " +
             "from customer c, " +
             "     bed b, " +

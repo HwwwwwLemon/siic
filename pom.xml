@@ -334,7 +334,7 @@
                     <include>**/*.yaml</include>
                     <include>**/*.xml</include>
                     <include>**/banner.txt</include>
-                    <!--<include>**/**</include>-->
+                    <include>**/static/**</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
@@ -345,7 +345,7 @@
                     <include>**/*.yaml</include>
                     <include>**/*.xml</include>
                     <include>**/banner.txt</include>
-                    <!--<include>**/**</include>-->
+                    <include>**/static/**</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
