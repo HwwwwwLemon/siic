@@ -1,4 +1,4 @@
-package com.hwwwww.config.servlet;
+package templates;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import java.io.IOException;
  * @version JDK 15
  * @date 2021/3/30 20:19
  */
-public class CorsFilterConfig implements Filter {
+class CorsFilterConfig implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
