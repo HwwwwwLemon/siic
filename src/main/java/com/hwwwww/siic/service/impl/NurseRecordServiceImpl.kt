@@ -8,8 +8,6 @@ import com.hwwwww.siic.mapper.NurseRecordMapper
 import com.hwwwww.siic.service.NurseRecordService
 import com.hwwwww.siic.vo.NurseRecord
 import org.springframework.stereotype.Service
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.HashMap
 
 @Service
@@ -17,7 +15,6 @@ open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?
 
     override fun selectNurseRecordByCustomerName(params: Map<String, Any>?): Map<String, Any>? {
         val result: MutableMap<String, Any> = HashMap(2)
-        params?.entries?.forEach(::println)
         //当前页码
         val currentPage: Int = (params?.get("currentPage") as String).toInt()
         //每页数
@@ -31,11 +28,11 @@ open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?
         queryWrapper.`in`("customer_name", name)
         queryWrapper.likeRight("createtime", nurseTime)
         PageHelper.startPage<Any?>(currentPage, pageSize)
-        val customers: List<Map<String, Any>>? = baseMapper?.selectNurseContentWithCustomerName(queryWrapper)
+        val list: List<Map<String, Any>>? = baseMapper?.selectNurseContentWithCustomerName(queryWrapper)
         //获取查询到的总数
-        val pageInfo = PageInfo(customers)
+        val pageInfo = PageInfo(list)
         result["totalCount"] = pageInfo.total
-        result["list"] = customers as Any
+        result["list"] = list as Any
         return result
     }
 
@@ -47,6 +44,19 @@ open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?
         val contentName = params["contentName"] as String
         return baseMapper?.selectNurseRecordTodayPlan(id, "$contentName%")
     }
+
+    override fun selectNurseRecord2ExcelData(params: Map<String, Any>?): List<Map<String, Any>>? {
+        //按照名字搜索
+        val name = (params?.get("name") as String).split(",")
+        //按照日期搜索
+        val startTime = params["startTime"] as String
+        val endTime = params["endTime"] as String
+        val queryWrapper: QueryWrapper<Map<String, Any>> = QueryWrapper<Map<String, Any>>()
+        queryWrapper.`in`("customer_name", name)
+        queryWrapper.between("createtime","$startTime 00:00:00","$endTime 23:59:59")
+        return baseMapper?.selectNurseContentWithCustomerName(queryWrapper)
+    }
+
 
     override fun insert(entity: NurseRecord?): Boolean {
         //判断完成次数

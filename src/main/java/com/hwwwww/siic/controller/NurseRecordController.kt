@@ -31,13 +31,11 @@ open class NurseRecordController {
 
     @RespBodyResMapping("/get-person-data-excel")
     open fun nurseRecordToExcelOneCustomer(resp: HttpServletResponse, @RequestParam params: Map<String, Any>?) {
-        val map = service.selectNurseRecordByCustomerName(params)
-        val list: List<Map<String, Any>>? = map?.get("list") as List<Map<String, Any>>?
         val titleNames: Array<String> = arrayOf("护理Id", "客户Id", "客户姓名", "护理时间", "护理名称", "护理描述", "护理人员")
         //在图片的字段后面加上showImg，不然出来的是图片链接
         val listKeys: Array<String> =
             arrayOf("nrid", "cid", "customerName", "createtime", "name", "description", "nickname")
-        EasyExcelUtilsKt().download(resp, "record", titleNames, listKeys, list);
+        EasyExcelUtilsKt().download(resp, "record", titleNames, listKeys, service.selectNurseRecord2ExcelData(params));
     }
 
     @RespBodyResMapping("/add")

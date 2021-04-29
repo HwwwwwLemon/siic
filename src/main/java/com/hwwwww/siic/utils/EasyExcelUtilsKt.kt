@@ -20,9 +20,9 @@ open class EasyExcelUtilsKt {
         dataList: List<Map<String, Any>>?
     ) {
         try {
-            EasyExcel.write(outputStream(response, fileName)).head(EasyExcelUtils.head(headArray))
+            EasyExcel.write(outputStream(response, fileName)).head(head(headArray))
                 .registerWriteHandler(LongestMatchColumnWidthStyleStrategy()).sheet()
-                .doWrite(EasyExcelUtils.dataList(dataList, listKey))
+                .doWrite(dataList(dataList, listKey))
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -40,25 +40,27 @@ open class EasyExcelUtilsKt {
     }
 
     @Throws(MalformedURLException::class)
-    fun dataList(list: List<Map<String, Any>>, listKey: Array<String>): List<List<Any>>? {
+    fun dataList(list: List<Map<String, Any>>?, listKey: Array<String>): List<List<Any>>? {
         val dataList: MutableList<List<Any>> = ArrayList()
-        for (map in list) {
-            val data: MutableList<Any> = ArrayList()
-            for (s in listKey) {
-                if (map[s] == null) {
-                    data.add("")
-                } else {
-                    //数据格式处理 发现包含showImg字段就展示网络图片（简单的判断）
-                    //也可以根据自己的需求进行格式化操作都放在这里
-                    val obj = map[s]
-                    if (s.contains("showImg") && obj.toString().contains("http")) {
-                        data.add(URL(obj.toString()))
+        if (list != null) {
+            for (map in list) {
+                val data: MutableList<Any> = ArrayList()
+                for (s in listKey) {
+                    if (map[s] == null) {
+                        data.add("")
                     } else {
-                        data.add(obj.toString())
+                        //数据格式处理 发现包含showImg字段就展示网络图片（简单的判断）
+                        //也可以根据自己的需求进行格式化操作都放在这里
+                        val obj = map[s]
+                        if (s.contains("showImg") && obj.toString().contains("http")) {
+                            data.add(URL(obj.toString()))
+                        } else {
+                            data.add(obj.toString())
+                        }
                     }
                 }
+                dataList.add(data)
             }
-            dataList.add(data)
         }
         return dataList
     }
