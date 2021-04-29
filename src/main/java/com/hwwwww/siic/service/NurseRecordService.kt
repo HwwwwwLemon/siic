@@ -26,9 +26,10 @@ interface NurseRecordService : IService<NurseRecord?> {
      * 根据客户的姓名将指定日期内的护理记录导出到Excel
      *
      * @param params 必须参数:客户姓名(name),时间(startTime,endTime)
+     * @param key 1表示单个客户 2表示全部客户
      * @return 结果集
      */
-    fun selectNurseRecord2ExcelData(params: Map<String, Any>?): List<Map<String, Any>>?
+    fun selectNurseRecord2ExcelData(params: Map<String, Any>?, key: Int): List<Map<String, Any>>?
     fun insert(entity: NurseRecord?): Boolean
     fun update(entity: NurseRecord?): Boolean
     fun delete(id: Int): Boolean

@@ -71,6 +71,11 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     }
 
     @Override
+    public List<String> selectCustomerNames() {
+        return baseMapper.selectCustomerNames();
+    }
+
+    @Override
     public List<Map<String, Object>> selectCustomerBedInfo() {
         return baseMapper.selectCustomerBedInfo();
     }

@@ -1,6 +1,7 @@
 package com.hwwwww.siic.controller
 
 import com.hwwwww.siic.annotation.RespBodyResMapping
+import com.hwwwww.siic.service.impl.CustomerServiceImpl
 import com.hwwwww.siic.service.impl.NurseRecordServiceImpl
 import com.hwwwww.siic.utils.EasyExcelUtilsKt
 import com.hwwwww.siic.vo.NurseRecord
@@ -19,6 +20,11 @@ open class NurseRecordController {
     @Autowired
     private lateinit var service: NurseRecordServiceImpl
 
+    private val titleNames: Array<String> =
+        arrayOf("护理Id", "客户Id", "客户姓名", "护理时间", "护理名称", "护理描述", "护理人员")
+    private val listKeys: Array<String> =
+        arrayOf("nrid", "cid", "customerName", "createtime", "name", "description", "nickname")
+
     @RespBodyResMapping("/query")
     open fun query(@RequestParam params: Map<String, Any>?): Map<String, Any>? {
         return service.selectNurseRecordByCustomerName(params)
@@ -31,11 +37,11 @@ open class NurseRecordController {
 
     @RespBodyResMapping("/get-person-data-excel")
     open fun nurseRecordToExcelOneCustomer(resp: HttpServletResponse, @RequestParam params: Map<String, Any>?) {
-        val titleNames: Array<String> = arrayOf("护理Id", "客户Id", "客户姓名", "护理时间", "护理名称", "护理描述", "护理人员")
-        //在图片的字段后面加上showImg，不然出来的是图片链接
-        val listKeys: Array<String> =
-            arrayOf("nrid", "cid", "customerName", "createtime", "name", "description", "nickname")
-        EasyExcelUtilsKt().download(resp, "record", titleNames, listKeys, service.selectNurseRecord2ExcelData(params));
+        EasyExcelUtilsKt().download(resp, "record", titleNames, listKeys, service.selectNurseRecord2ExcelData(params,1));
+    }
+    @RespBodyResMapping("/get-all-person-data-excel")
+    open fun allNurseRecordToExcelOneCustomer(resp: HttpServletResponse, @RequestParam params: Map<String, Any>?) {
+        EasyExcelUtilsKt().download(resp, "record", titleNames, listKeys, service.selectNurseRecord2ExcelData(params,2));
     }
 
     @RespBodyResMapping("/add")
