@@ -21,6 +21,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private RSAUtil rsa;
+    @Autowired
+    private TokenUtil tokenUtil;
 
     @Override
     public Map<String, Object> selectUserWithPage(Map<String, Object> params) throws Exception {
@@ -96,7 +98,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = this.getOne(new QueryWrapper<User>().eq("username", username));
         if (user != null) {
             if (user.getPassword().equals(password)) {
-                map.put("token", TokenUtil.sign(username));
+                map.put("token", tokenUtil.sign(username, 1));
+                map.put("refresh_token", tokenUtil.sign(username, 2));
                 map.put("id", user.getId());
                 map.put("name", user.getNickname());
                 map.put("username", user.getUsername());
@@ -108,11 +111,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Map<String, Object> logout(String token) {
         Map<String, Object> map = new HashMap<>(4);
-        String username = TokenUtil.getInfo(token);
+        String username = tokenUtil.getInfo(token);
         if (username != null) {
             User user = this.getOne(new QueryWrapper<User>().eq("username", username));
             if (user != null) {
-                map.put("token", TokenUtil.sign(username));
+                map.put("token", tokenUtil.sign(username, 1));
                 map.put("id", user.getId());
                 map.put("name", user.getNickname());
 
@@ -124,11 +127,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Map<String, Object> getInfo(String token) {
         Map<String, Object> map = new HashMap<>(4);
-        String username = TokenUtil.getInfo(token);
+        String username = tokenUtil.getInfo(token);
         if (username != null) {
             User user = this.getOne(new QueryWrapper<User>().eq("username", username));
             if (user != null) {
-                map.put("token", TokenUtil.sign(username));
+                map.put("token", tokenUtil.sign(username, 1));
                 map.put("id", user.getId());
                 map.put("name", user.getNickname());
                 map.put("username", user.getUsername());

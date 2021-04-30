@@ -12,8 +12,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 
 /**
@@ -25,8 +23,10 @@ import java.util.concurrent.Executors;
  */
 @Configuration
 public class WebCoreConfig implements WebMvcConfigurer {
-    static final String[] ORIGINS = new String[]{"GET", "POST", "PUT", "DELETE"};
-
+    private static final String[] ORIGINS = new String[]{"GET", "POST", "PUT", "DELETE"};
+    public static final String[] WHITE_LIST = new String[]{
+            "/user/register", "/user/login", "/user/logout", "/user/refresh-token", "/user/info",
+            "/favicon.ico", "/error", "/static/**", "/assets/**", "/images/**", "/static/images/**"};
     private TokenInterceptor tokenInterceptor;
 
     //构造方法
@@ -51,20 +51,7 @@ public class WebCoreConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        List<String> excludePath = new ArrayList<>();
-        //排除拦截
-        excludePath.add("/user/register");
-        excludePath.add("/user/login");
-        excludePath.add("/user/logout");
-        excludePath.add("/user/refresh-token");
-        excludePath.add("/user/info");
-        excludePath.add("/favicon.ico");
-        excludePath.add("/error");
-        excludePath.add("/static/**");
-        excludePath.add("/assets/**");
-        excludePath.add("/images/**");
-        excludePath.add("/static/images/**");
-        registry.addInterceptor(tokenInterceptor).excludePathPatterns(excludePath).addPathPatterns("/**");
+        registry.addInterceptor(tokenInterceptor).excludePathPatterns(WHITE_LIST).addPathPatterns("/**");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 

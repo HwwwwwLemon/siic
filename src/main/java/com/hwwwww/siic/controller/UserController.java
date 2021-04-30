@@ -2,7 +2,6 @@ package com.hwwwww.siic.controller;
 
 import com.hwwwww.siic.annotation.RespBodyResMapping;
 import com.hwwwww.siic.service.UserService;
-import com.hwwwww.siic.utils.MyLogger;
 import com.hwwwww.siic.utils.TokenUtil;
 import com.hwwwww.siic.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,10 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService service;
-
+    @Autowired
+    private TokenUtil tokenUtil;
     @RespBodyResMapping("/query")
     public Map<String, Object> getUsers(@RequestParam Map<String, Object> params) throws Exception {
-
         return service.selectUserWithPage(params);
     }
 
@@ -72,18 +71,25 @@ public class UserController {
         return service.getInfo(token);
     }
 
+    @RespBodyResMapping("/alive-status")
+    public String check() {
+        return "pass";
+    }
+
     @RespBodyResMapping("/refresh-token")
     public Map<String, Object> refreshToken(@RequestParam Map<String, Object> params) {
         Map<String, Object> map = new HashMap<>(2);
         String token = (String) params.get("token");
         String username = (String) params.get("username");
-        MyLogger.info("token:{},username:{}",token,username);
-        int code = TokenUtil.isRefreshToken(token);
-        if (code == 1) {
-            map.put("token", TokenUtil.sign(username));
-            map.put("code", 20000);
-        } else if (code == 0) {
-            map.put("code", 50001);
+        try {
+            if (tokenUtil.verify(token)) {
+                map.put("token", tokenUtil.sign(username, 1));
+                map.put("refresh_token", tokenUtil.sign(username, 2));
+                map.put("code", 20000);
+            }
+        } catch (Exception e) {
+            map.put("message", "Please login again!");
+            map.put("code", 50020);
         }
         return map;
     }

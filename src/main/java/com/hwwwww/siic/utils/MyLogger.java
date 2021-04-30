@@ -34,15 +34,15 @@ public class MyLogger {
     }
 
     public static void error(String errorMessage) {
-        log.warn(errorMessage);
+        log.error(errorMessage);
     }
 
     public static void error(String errorMessage, Object... args) {
-        log.warn(errorMessage, args);
+        log.error(errorMessage, args);
     }
 
     public static void error(String errorMessage, Throwable throwable) {
-        log.warn(errorMessage, throwable);
+        log.error(errorMessage, throwable);
     }
 
 }
