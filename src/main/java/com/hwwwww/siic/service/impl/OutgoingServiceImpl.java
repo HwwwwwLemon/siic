@@ -55,9 +55,12 @@ public class OutgoingServiceImpl extends ServiceImpl<OutgoingMapper, OutGoing> i
         List<OutGoing> passList = new LinkedList<>();
         for (OutGoing outGoing : outGoingList) {
             Customer customer = customerService.getById(outGoing.getCustomerid());
-            bedService.changeBedStatus(customer.getBedId(), 3);
+            if("审批通过".equals(outGoing.getAuditStatus())){
+                 bedService.changeBedStatus(customer.getBedId(), 3);
+            }
             long diff = System.currentTimeMillis() - outGoing.getAuditTime().getTime();
-            if (diff < 60 * 1000) {
+            if (diff < 60 * 1000 ) {
+
                 passList.add(outGoing);
             }
         }
