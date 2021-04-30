@@ -66,7 +66,6 @@ public class FoodServiceImpl extends ServiceImpl<FoodMapper, Food> implements Fo
                 }
                 count++;
             }
-            System.out.println(count);
             result.put(tagName, tempList);
         }
         result.put("tags", tags);

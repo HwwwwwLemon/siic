@@ -5,6 +5,8 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.hwwwww.siic.utils.MyLogger;
 import com.hwwwww.siic.utils.TokenUtil;
 import com.hwwwww.siic.utils.WebCode;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -17,9 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private TokenUtil tokenUtil;
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
         Integer code = WebCode.TOKEN_ILLEGAL;
+        JSONObject json = new JSONObject();
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
@@ -29,9 +34,9 @@ public class TokenInterceptor implements HandlerInterceptor {
         String token = request.getHeader("token");
         if (token != null) {
             try {
-                boolean result = TokenUtil.verify(token);
+                boolean result = tokenUtil.verify(token);
                 if (result) {
-                    MyLogger.info("Token验证通过!");
+                    MyLogger.info("请求:" + request.getRequestURI() + ",Token认证成功，验证通过!");
                     return true;
                 }
             } catch (TokenExpiredException e) {
@@ -41,7 +46,6 @@ public class TokenInterceptor implements HandlerInterceptor {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         try {
-            JSONObject json = new JSONObject();
             json.put("message", "Token verify fail");
             json.put("code", code);
             response.getWriter().append(json.toJSONString());
@@ -49,7 +53,6 @@ public class TokenInterceptor implements HandlerInterceptor {
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500);
-            return false;
         }
         return false;
     }

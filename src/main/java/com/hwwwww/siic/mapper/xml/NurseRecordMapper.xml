@@ -10,10 +10,9 @@
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="contentid" jdbcType="INTEGER" property="contentid" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="doneTimes" jdbcType="INTEGER" property="donetimes" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, is_deleted, customerid, userid, contentid, createtime, doneTimes
+    id, is_deleted, customerid, userid, contentid, createtime
   </sql>
 </mapper>
