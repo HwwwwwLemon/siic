@@ -43,13 +43,18 @@ open class NurseRecordServiceImpl : ServiceImpl<NurseRecordMapper?, NurseRecord?
         if (params?.size!! <= 0) {
             return null
         }
-        val id = (params["id"] as String).toInt()
+        val id: Int = try {
+            (params["id"] as String).toInt()
+        } catch (e: Exception) {
+            params["id"] as Int
+        }
+
         val contentName = params["contentName"] as String
         return baseMapper?.selectNurseRecordTodayPlan(id, "$contentName%")
     }
 
     override fun selectNurseRecord2ExcelData(params: Map<String, Any>?, key: Int): List<Map<String, Any>>? {
-        var name: List<String> = listOf("")
+        val name: List<String>?
         //按照名字搜索
         when (key) {
             1 -> name = (params?.get("name") as String).split(",")
