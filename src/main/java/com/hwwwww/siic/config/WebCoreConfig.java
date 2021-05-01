@@ -27,6 +27,7 @@ public class WebCoreConfig implements WebMvcConfigurer {
     public static final String[] WHITE_LIST = new String[]{
             "/user/register", "/user/login", "/user/logout", "/user/refresh-token", "/user/info",
             "/favicon.ico", "/error", "/static/**", "/assets/**", "/images/**", "/static/images/**"};
+    public static final String[] BLACK_LIST = new String[]{""};
     private TokenInterceptor tokenInterceptor;
 
     //构造方法

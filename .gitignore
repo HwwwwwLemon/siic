@@ -30,4 +30,5 @@ build/
 
 ### VS Code ###
 .vscode/
-/.idea
+/src/main/resources/rebel.xml
+/.idea/.rebel-remote.xml.bak
