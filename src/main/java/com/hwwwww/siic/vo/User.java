@@ -24,6 +24,8 @@ public class User implements Serializable {
     @TableField(value = "nickname")
     private String nickname;
 
+    public static final String COL_ROLEID = "roleid";
+
     /**
      * 用户姓名
      */
@@ -65,6 +67,11 @@ public class User implements Serializable {
     public static final String COL_IS_DELETED = "is_deleted";
 
     public static final String COL_NICKNAME = "nickname";
+    /**
+     * 权限id
+     */
+    @TableField(value = "roleid")
+    private String roleid;
 
     public static final String COL_USERNAME = "username";
 

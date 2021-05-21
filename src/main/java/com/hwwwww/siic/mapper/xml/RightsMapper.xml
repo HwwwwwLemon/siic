@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwwwww.siic.mapper.RightsMapper">
+    <select id="getright1" parameterType="int" resultMap="map2">
+        select r1.*,r.roleid from rights r1,role_right_r r
+        where r.rightid=r1.id and r.roleid=#{id} and r1.level=1 and r1.isdeleted=1
+    </select>
+    <resultMap type="rights" id="map2">
+        <id property="id" column="id"/>
+        <result property="authname" column="authname"/>
+        <result property="level" column="level"/>
+        <result property="pid" column="pid"/>
+        <result property="path" column="path"/>
+        <result property="isdeleted" column="isdeleted"/>
+        <collection property="children" column="{roleid=roleid,pid=id}" select="getright2" ofType="rights">
+        </collection>
+    </resultMap>
+
+    <!-- 获取二级权限  roleid pid -->
+    <select id="getright2" parameterType="map" resultMap="map3">
+        select r1.*,r.roleid from rights r1,role_right_r r
+        where r.rightid=r1.id and r.roleid=#{roleid} and r1.level=2 and r1.isdeleted=1 and r1.pid=#{pid}
+    </select>
+    <resultMap type="rights" id="map3">
+        <id property="id" column="id"/>
+        <result property="authname" column="authname"/>
+        <result property="level" column="level"/>
+        <result property="pid" column="pid"/>
+        <result property="path" column="path"/>
+        <result property="isdeleted" column="isdeleted"/>
+        <collection property="children" column="{roleid=roleid,pid=id}" select="getright3" ofType="rights">
+        </collection>
+    </resultMap>
+    <!-- 获取三级权限  roleid pid -->
+    <select id="getright3" parameterType="map" resultType="rights">
+        select r1.* from rights r1,role_right_r r
+        where r.rightid=r1.id and r.roleid=#{roleid} and r1.level=3 and r1.isdeleted=1 and r1.pid=#{pid}
+    </select>
+
+
+    <select id="getallright1" parameterType="int" resultMap="map22">
+        select *
+        from rights
+        where isdeleted = 1
+          and level = 1
+    </select>
+    <resultMap type="rights" id="map22">
+        <id property="id" column="id"/>
+        <result property="authname" column="authname"/>
+        <result property="level" column="level"/>
+        <result property="pid" column="pid"/>
+        <result property="path" column="path"/>
+        <result property="isdeleted" column="isdeleted"/>
+        <collection property="children" column="id" select="getright22" ofType="rights">
+        </collection>
+    </resultMap>
+
+    <!-- 获取二级权限  roleid pid -->
+    <select id="getright22" parameterType="map" resultMap="map33">
+        select * from rights
+        where level=2 and isdeleted=1 and pid=#{pid}
+    </select>
+    <resultMap type="rights" id="map33">
+        <id property="id" column="id"/>
+        <result property="authname" column="authname"/>
+        <result property="level" column="level"/>
+        <result property="pid" column="pid"/>
+        <result property="path" column="path"/>
+        <result property="isdeleted" column="isdeleted"/>
+        <collection property="children" column="id" select="getright33" ofType="rights">
+        </collection>
+    </resultMap>
+    <!-- 获取三级权限  roleid pid -->
+    <select id="getright33" parameterType="map" resultType="rights">
+        select * from rights
+        where level=3 and isdeleted=1 and pid=#{pid}
+    </select>
+</mapper>
