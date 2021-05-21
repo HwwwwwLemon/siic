@@ -2,6 +2,7 @@ package com.hwwwww.siic.config;
 
 
 import com.hwwwww.siic.config.converter.DateToStringConverter;
+import com.hwwwww.siic.interceptor.RoleInterceptor;
 import com.hwwwww.siic.interceptor.TokenInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -25,14 +26,17 @@ import java.util.concurrent.Executors;
 public class WebCoreConfig implements WebMvcConfigurer {
     private static final String[] ORIGINS = new String[]{"GET", "POST", "PUT", "DELETE"};
     public static final String[] WHITE_LIST = new String[]{
-            "/user/register", "/user/login", "/user/logout", "/user/refresh-token", "/user/info",
+            "/user/register", "/user/login", "/user/logout","/user/alive-status", "/user/refresh-token", "/user/info",
             "/favicon.ico", "/error", "/static/**", "/assets/**", "/images/**", "/static/images/**"};
     public static final String[] BLACK_LIST = new String[]{""};
     private TokenInterceptor tokenInterceptor;
+    private RoleInterceptor roleInterceptor;
 
     //构造方法
-    public WebCoreConfig(TokenInterceptor tokenInterceptor) {
+    public WebCoreConfig(TokenInterceptor tokenInterceptor, RoleInterceptor roleInterceptor) {
         this.tokenInterceptor = tokenInterceptor;
+        this.roleInterceptor = roleInterceptor;
+
     }
 
     @Autowired
@@ -53,6 +57,7 @@ public class WebCoreConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor).excludePathPatterns(WHITE_LIST).addPathPatterns("/**");
+        registry.addInterceptor(roleInterceptor).excludePathPatterns(WHITE_LIST).addPathPatterns("/**");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 

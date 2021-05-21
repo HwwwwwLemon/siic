@@ -19,7 +19,7 @@ import java.util.Map;
  * @date 2021/4/16 13:33
  */
 @RestController
-@RequestMapping("nurse-content")
+@RequestMapping("/nurse-content")
 public class NurseContentController {
 
     @Autowired

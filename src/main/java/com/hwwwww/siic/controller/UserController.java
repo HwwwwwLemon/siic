@@ -31,7 +31,7 @@ public class UserController {
 
     @RespBodyResMapping("get-by-id")
     public Map<String, Object> getUserById(Integer id) throws Exception {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1);
         map.put("user", service.getUserById(id));
         return map;
     }

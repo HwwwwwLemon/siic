@@ -10,5 +10,7 @@ public interface WebCode {
     //    Integer TOKEN_VERIFY_FAILED = 50002;
     Integer TOKEN_ILLEGAL = 50008;
     Integer TOKEN_EXPIRED = 50014;
+    Integer NO_PERMISSION = 50020;
     Integer USER_NOT_FOUND = 2003;
+
 }

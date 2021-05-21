@@ -4,14 +4,14 @@ import com.hwwwww.siic.service.BedService;
 import com.hwwwww.siic.service.CustomerService;
 import com.hwwwww.siic.service.FoodService;
 import com.hwwwww.siic.service.NurseRecordService;
+import com.hwwwww.siic.utils.GeneralUtil;
 import com.hwwwww.siic.utils.RSAUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -29,11 +29,9 @@ class SiicApplicationTests {
 
     @Test
     void contextLoads() throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", "8");
-        map.put("levelId", "1");
-        System.out.println(nurseRecordService.selectNurseRecordTodayPlanByCustomerNameAndDate(map));
-
+        List<String> res = GeneralUtil.regexResult("([a-z-_1-9]+)", "rights/getallrights");
+        for (String i :res)
+        System.out.println(i);
     }
 
 }

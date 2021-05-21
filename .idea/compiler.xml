@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="siic" target="8" />
+      <module name="siic" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

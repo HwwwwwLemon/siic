@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2021/4/15 21:56
  */
 @RestController
-@RequestMapping("nurse-level")
+@RequestMapping("/nurse-level")
 public class NurseLevelController {
     @Autowired
     private NurseLevelService service;

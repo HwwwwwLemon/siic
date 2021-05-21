@@ -18,9 +18,9 @@ public class RoleRightRController {
 
 
     @RequestMapping("del")
-    public Integer del(int roleId, int rightid) {
-        System.out.println("删除角色的权限 角色id：" + roleId + "权限id：" + rightid);
-        return service.del(roleId, rightid);
+    public Integer del(int roleId, int rightId) {
+        System.out.println("删除角色的权限 角色id：" + roleId + "权限id：" + rightId);
+        return service.del(roleId, rightId);
     }
 
     @RespBodyResMapping("fenpei")

@@ -1,5 +1,10 @@
 package com.hwwwww.siic.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Hwwwww
  * @version JDK 15
@@ -24,5 +29,15 @@ public class GeneralUtil {
         } else {
             return "";
         }
+    }
+
+    public static List<String> regexResult(String regex, String content) {
+        List<String> l = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher m = pattern.matcher(content);
+        while (m.find()) {
+            l.add(m.group());
+        }
+        return l;
     }
 }

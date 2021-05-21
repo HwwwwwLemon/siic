@@ -18,7 +18,7 @@ public class RoleController {
 
     @RespBodyResMapping("/getall")
     public List<Role> getroles() {
-        return service.getroles();
+        return service.getroles(null);
     }
 
 

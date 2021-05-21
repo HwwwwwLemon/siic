@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface RoleService extends IService<Role> {
 
-    public List<Role> getroles();
+    public List<Role> getroles(Integer id);
+    boolean checkRoles(Integer userId,String path);
 }

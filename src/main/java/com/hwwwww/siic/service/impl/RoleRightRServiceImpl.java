@@ -42,6 +42,6 @@ public class RoleRightRServiceImpl extends ServiceImpl<RoleRightRMapper, RoleRig
                 dao.insert(r);
             }
         }
-        return roledao.getroles().get(0);
+        return roledao.getroles(roleid).get(0);
     }
 }
