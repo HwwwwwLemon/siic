@@ -52,7 +52,7 @@ public class WebCoreConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-       // registry.addInterceptor(tokenInterceptor).excludePathPatterns(WHITE_LIST).addPathPatterns("/**");
+        registry.addInterceptor(tokenInterceptor).excludePathPatterns(WHITE_LIST).addPathPatterns("/**");
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 

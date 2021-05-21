@@ -335,6 +335,8 @@
                     <include>**/*.xml</include>
                     <include>**/banner.txt</include>
                     <include>**/**</include>
+                    <include>**/static/**</include>
+
                 </includes>
                 <filtering>false</filtering>
             </resource>
@@ -346,6 +348,8 @@
                     <include>**/*.xml</include>
                     <include>**/banner.txt</include>
                     <include>**/**</include>
+                    <include>**/static/**</include>
+
                 </includes>
                 <filtering>false</filtering>
             </resource>
