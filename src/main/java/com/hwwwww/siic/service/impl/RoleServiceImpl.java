@@ -25,12 +25,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         //检查rootPath权限
         if (baseMapper.checkRole(userId, "%" + rootPath + "%").size() <= 0) {
             return false;
+        }
+        if (childPath.contains("get-")) {
+            return baseMapper.checkRole(userId, "%" + GeneralUtil.regexResult("/([a-z-_1-9]+)/get-", path).get(0) + "%").size() > 0;
         } else {
-            if (childPath.contains("get")) {
-                return true;
-            }
+            return baseMapper.checkRole(userId, "%" + path + "%").size() > 0;
         }
 
-        return baseMapper.checkRole(userId, "%" + path + "%").size() > 0;
     }
 }
